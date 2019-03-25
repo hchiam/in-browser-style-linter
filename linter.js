@@ -16,13 +16,14 @@ for (var i=0; i<settings.length; i++) {
 function lint(setting) {
     var selector = setting.selector || setting.s;
     var property = setting.property || setting.p;
-    var valueExpected = setting.value || setting.v || setting.expected || setting.ev;
-    if (!settingPropertiesSet(selector, property, valueExpected)) return;
+    var expectedValue = setting.value || setting.v || setting.expected || setting.ev;
+    if (!settingPropertiesSet(selector, property, expectedValue)) return;
     var element = document.querySelector(selector);
     if (element) {
-        var compStyles = element ? window.getComputedStyle(element) : '';
-        if (valueExpected != compStyles.getPropertyValue(property)) {
-            var message = selector + ':\n  ' + property + ':\n    Expected: ' + valueExpected + '\n    Actual: ' + compStyles.getPropertyValue(property);
+        var computedStyles = element ? window.getComputedStyle(element) : '';
+        var actualValue = computedStyles.getPropertyValue(property);
+        if (expectedValue != actualValue) {
+            var message = selector + ':\n  ' + property + ':\n    WANT: ' + expectedValue + '\n    HAVE: ' + actualValue;
         }
         var btn = document.createElement("BUTTON");
         btn.onclick = function() {
