@@ -2,8 +2,8 @@
 In-browser style linter.
 
 ## To use it, run it in your browser:
-* Chrome: snippets
-* Firefox: scratchpad
+* Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
+* Firefox: [Scratchpad](https://developer.mozilla.org/en-US/docs/Tools/Scratchpad)
 
 ## To add a setting, edit this part of the JS code:
 ```js
