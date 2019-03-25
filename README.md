@@ -1,11 +1,10 @@
 # in-browser-style-linter
-In-browser style linter.
+Find style problems in your page _after_ it renders: 
+1. Add settings. 
+2. Run in-browser. 
+3. See red buttons.
 
-## To use it, run it in your browser:
-* Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
-* Firefox: [Scratchpad](https://developer.mozilla.org/en-US/docs/Tools/Scratchpad)
-
-## To add a setting, edit this part of the JS code:
+## STEP 1: To add a setting, edit this part of the JS code:
 ```js
 // Enter your desired settings here:
 var settings = [
@@ -30,3 +29,11 @@ var settings = [
     v: 'avenir'
 ];
 ```
+
+## STEP 2: Set up your browser to run the JS code:
+* Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
+* Firefox: [Scratchpad](https://developer.mozilla.org/en-US/docs/Tools/Scratchpad)
+
+## STEP 3: You'll see red buttons, like this:
+
+![image](https://github.com/hchiam/in-browser-style-linter/blob/master/example-screenshot.png)
