@@ -13,10 +13,13 @@ for (var i=0; i<settings.length; i++) {
     lint(settings[i]);
 }
 
+alert('Finished linting. Hover over the buttons.');
+
 function lint(setting) {
     var selector = setting.s || setting.selector;
     var property = setting.p || setting.property;
     var expectedValue = setting.v || setting.ev || setting.value || setting.expected || setting.expectedValue;
+    var contains = setting.c || setting.contains;
     if (!settingPropertiesSet(selector, property, expectedValue)) return;
     var elements = document.querySelectorAll(selector + ':not(.in-browser-linter-button)');
     for (var j=0; j<elements.length; j++) {
@@ -24,6 +27,9 @@ function lint(setting) {
         if (element) {
             var actualValue = element ? window.getComputedStyle(element).getPropertyValue(property) : '';
             if (expectedValue == actualValue) {
+                return; // ignore correct
+            }
+            if (contains && actualValue.indexOf(expectedValue) !== -1) {
                 return; // ignore correct
             }
             var message = selector + ':\n  ' + property + ':\n    WANT: ' + expectedValue + '\n    HAVE: ' + actualValue;
