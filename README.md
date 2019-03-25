@@ -36,6 +36,8 @@ var settings = [
 * Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
 * Firefox: [Scratchpad](https://developer.mozilla.org/en-US/docs/Tools/Scratchpad)
 
-## STEP 3: You'll see red buttons, like this:
+## STEP 3: You'll see ugly red buttons, like this:
 
 ![image](https://github.com/hchiam/in-browser-style-linter/blob/master/example-screenshot.png)
+
+Clicking on the button shows the expected and actual values.
