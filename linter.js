@@ -18,23 +18,26 @@ function lint(setting) {
     var property = setting.p || setting.property;
     var expectedValue = setting.v || setting.ev || setting.value || setting.expected || setting.expectedValue;
     if (!settingPropertiesSet(selector, property, expectedValue)) return;
-    var element = document.querySelector(selector);
-    if (element) {
-        var actualValue = element ? window.getComputedStyle(element).getPropertyValue(property) : '';
-        if (expectedValue == actualValue) {
-            return; // ignore correct
+    var elements = document.querySelectorAll(selector);
+    for (var j=0; j<elements.length; j++) {
+        var element = elements[j];
+        if (element) {
+            var actualValue = element ? window.getComputedStyle(element).getPropertyValue(property) : '';
+            if (expectedValue == actualValue) {
+                return; // ignore correct
+            }
+            var message = selector + ':\n  ' + property + ':\n    WANT: ' + expectedValue + '\n    HAVE: ' + actualValue;
+            var btn = document.createElement("BUTTON");
+            btn.onclick = function() {
+                alert(message);
+            };
+            btn.innerHTML = '!';
+            btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.1rem solid white; width: 1rem; text-align: center;';
+            var spn = document.createElement("SPAN");
+            spn.style.cssText = 'all: initial; position: relative; width: 0; height: 0;';
+            spn.appendChild(btn);
+            element.appendChild(spn);
         }
-        var message = selector + ':\n  ' + property + ':\n    WANT: ' + expectedValue + '\n    HAVE: ' + actualValue;
-        var btn = document.createElement("BUTTON");
-        btn.onclick = function() {
-            alert(message);
-        };
-        btn.innerHTML = '!';
-        btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.1rem solid white; width: 1rem; text-align: center;';
-        var spn = document.createElement("SPAN");
-        spn.style.cssText = 'all: initial; position: relative; width: 0; height: 0;';
-        spn.appendChild(btn);
-        element.appendChild(spn);
     }
 }
 
