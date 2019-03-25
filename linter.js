@@ -20,11 +20,11 @@ function lint(setting) {
     if (!settingPropertiesSet(selector, property, expectedValue)) return;
     var element = document.querySelector(selector);
     if (element) {
-        var computedStyles = element ? window.getComputedStyle(element) : '';
-        var actualValue = computedStyles.getPropertyValue(property);
-        if (expectedValue != actualValue) {
-            var message = selector + ':\n  ' + property + ':\n    WANT: ' + expectedValue + '\n    HAVE: ' + actualValue;
+        var actualValue = element ? window.getComputedStyle(element).getPropertyValue(property) : '';
+        if (expectedValue == actualValue) {
+            return; // ignore correct
         }
+        var message = selector + ':\n  ' + property + ':\n    WANT: ' + expectedValue + '\n    HAVE: ' + actualValue;
         var btn = document.createElement("BUTTON");
         btn.onclick = function() {
             alert(message);
