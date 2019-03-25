@@ -29,7 +29,7 @@ function lint(setting) {
             alert(message);
         };
         btn.innerHTML = '!';
-        btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; width: 1rem; text-align: center;';
+        btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.1rem solid white; width: 1rem; text-align: center;';
         var spn = document.createElement("SPAN");
         spn.style.cssText = 'all: initial; position: relative; width: 0; height: 0;';
         spn.appendChild(btn);
