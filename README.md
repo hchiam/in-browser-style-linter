@@ -4,7 +4,7 @@ Do quick style checks on your page _**after**_ it renders:
 2. Run in-browser. 
 3. See red buttons.
 
-## STEP 1: To add a setting, edit this part of the JS code:
+## STEP 1: To add a setting, edit [this part](https://github.com/hchiam/in-browser-style-linter/blob/master/linter.js#L3) of the JS code:
 ```js
 // Enter your desired settings here:
 var settings = [
