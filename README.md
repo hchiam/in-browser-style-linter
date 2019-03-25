@@ -1,5 +1,5 @@
 # in-browser-style-linter
-Find style problems in your page _after_ it renders: 
+Do quick style checks on your page _**after**_ it renders: 
 1. Add settings. 
 2. Run in-browser. 
 3. See red buttons.
