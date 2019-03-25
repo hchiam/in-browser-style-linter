@@ -24,9 +24,11 @@ var settings = [
     p: 'color', // property
     v: 'red' // expected value
 },
+{
     s: 'p#description',
     p: 'font-family',
     v: 'avenir'
+}
 ];
 ```
 
