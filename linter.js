@@ -3,9 +3,9 @@
 // Enter your desired settings here:
 var settings = [
 {
-    's': 'h1', // selector
-    'p': 'color', // property
-    'v': 'red' // expected value
+    s: 'h1', // selector
+    p: 'color', // property
+    v: 'red' // expected value
 }
 ];
 
