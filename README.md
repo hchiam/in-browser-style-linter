@@ -1,5 +1,6 @@
 # in-browser-style-linter
-Do quick style checks on your page _**after**_ it renders: 
+Do quick style checks on your page _after_ it renders, and _without leaving your browser_: 
+
 1. Add settings. 
 2. Run in-browser. 
 3. See red buttons.
