@@ -14,9 +14,9 @@ for (var i=0; i<settings.length; i++) {
 }
 
 function lint(setting) {
-    var selector = setting.selector || setting.s;
-    var property = setting.property || setting.p;
-    var expectedValue = setting.value || setting.v || setting.expected || setting.ev;
+    var selector = setting.s || setting.selector;
+    var property = setting.p || setting.property;
+    var expectedValue = setting.v || setting.ev || setting.value || setting.expected || setting.expectedValue;
     if (!settingPropertiesSet(selector, property, expectedValue)) return;
     var element = document.querySelector(selector);
     if (element) {
