@@ -36,7 +36,7 @@ var settings = [
 ## STEP 2: Set up your browser to run the JS code:
 * Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
 * Firefox: [Scratchpad](https://developer.mozilla.org/en-US/docs/Tools/Scratchpad)
-* IE: F12 > Console > paste the whole code into the terminal (paste after the ">" symbol on the bottom) > Ctrl+Enter (or hit run)
+* Internet Explorer: F12 > Console > paste the whole code into the terminal (paste after the ">" symbol on the bottom) > Ctrl+Enter (or hit run)
 
 ## STEP 3: You'll see ugly red buttons, like this:
 
