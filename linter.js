@@ -2,11 +2,11 @@
 
 // Enter your desired settings here:
 var settings = [
-{
-    s: 'h1', // selector
-    p: 'color', // property
-    v: 'red' // expected value
-}
+    {
+        s: 'h1', // selector
+        p: 'color', // property
+        v: 'red' // expected value
+    }
 ];
 
 for (var i=0; i<settings.length; i++) {
@@ -24,28 +24,26 @@ function lint(setting) {
     var elements = document.querySelectorAll(selector + ':not(.in-browser-linter-button)');
     for (var j=0; j<elements.length; j++) {
         var element = elements[j];
-        if (element) {
-            var actualValue = element ? window.getComputedStyle(element).getPropertyValue(property) : '';
-            if (expectedValue == actualValue) {
-                return; // ignore correct
-            }
-            if (contains && actualValue.indexOf(expectedValue) !== -1) {
-                return; // ignore correct
-            }
-            var message = selector + ':\n  ' + property + ':\n    WANT: ' + expectedValue + '\n    HAVE: ' + actualValue;
-            var btn = document.createElement("BUTTON");
-            btn.onclick = function() {
-                alert(message);
-            };
-            btn.innerHTML = '!';
-            btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.1rem solid white; width: 1rem; text-align: center;';
-            btn.title = message;
-            btn.className = 'in-browser-linter-button';
-            var spn = document.createElement("SPAN");
-            spn.style.cssText = 'all: initial; position: relative; width: 0; height: 0;';
-            spn.appendChild(btn);
-            element.appendChild(spn);
+        var actualValue = element ? window.getComputedStyle(element).getPropertyValue(property) : '';
+        if (expectedValue == actualValue) {
+            continue; // ignore correct
         }
+        if (contains && actualValue.indexOf(expectedValue) !== -1) {
+            continue; // ignore correct
+        }
+        var message = selector + ':\n  ' + property + ':\n    WANT: ' + expectedValue + '\n    HAVE: ' + actualValue;
+        var btn = document.createElement("BUTTON");
+        btn.onclick = function() {
+            alert(message);
+        };
+        btn.innerHTML = '!';
+        btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.1rem solid white; width: 1rem; text-align: center;';
+        btn.title = message;
+        btn.className = 'in-browser-linter-button';
+        var spn = document.createElement("SPAN");
+        spn.style.cssText = 'all: initial; position: relative; width: 0; height: 0;';
+        spn.appendChild(btn);
+        if (element) element.appendChild(spn);
     }
 }
 
