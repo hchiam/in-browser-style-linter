@@ -46,7 +46,7 @@ function lint(setting) {
             alert(message);
         };
         btn.innerHTML = '!';
-        btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.1rem solid white; width: 2rem; text-align: center;';
+        btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.15rem solid white; width: 2rem; text-align: center;';
         btn.title = message;
         btn.className = 'in-browser-linter-button';
         var spn = document.createElement("SPAN");
