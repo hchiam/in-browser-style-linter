@@ -11,10 +11,14 @@ var settings = [
 
 var errors = [];
 for (var i=0; i<settings.length; i++) {
-    errors.push(lint(settings[i]));
+    var error = lint(settings[i]);
+    if (error) {
+        errors.push(error);
+    }
 }
 
 alert('Finished linting. Hover over the buttons.\n\nA summary is also listed in the console log.');
+console.log('Linter found these errors: (click to expand)');
 console.log(errors);
 
 function lint(setting) {
@@ -23,7 +27,9 @@ function lint(setting) {
     var property = setting.p || setting.property;
     var expectedValue = setting.v || setting.ev || setting.value || setting.expected || setting.expectedValue;
     var contains = setting.c || setting.contains;
-    if (!settingPropertiesSet(selector, property, expectedValue)) return;
+    if (!settingPropertiesSet(selector, property, expectedValue)) {
+        return;
+    }
     var elements = document.querySelectorAll(selector + ':not(.in-browser-linter-button)');
     for (var j=0; j<elements.length; j++) {
         var element = elements[j];
@@ -46,15 +52,13 @@ function lint(setting) {
         var spn = document.createElement("SPAN");
         spn.style.cssText = 'all: initial; position: relative; width: 0; height: 0;';
         spn.appendChild(btn);
-        if (element) {
-            element.appendChild(spn);
-            errorSummary = {
-                selector:selector,
-                property:property,
-                expectedValue:expectedValue,
-                actualValue:actualValue
-            };
-        }
+        element.appendChild(spn);
+        errorSummary = {
+            selector:selector,
+            property:property,
+            expectedValue:expectedValue,
+            actualValue:actualValue
+        };
     }
     return errorSummary;
 }
