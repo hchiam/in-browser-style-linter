@@ -2,7 +2,7 @@
 Do quick style checks on your page _after_ it renders, and _without leaving your browser_: 
 
 1. Add settings. 
-2. Run in-browser. 
+2. Run in-browser. [(Chrome/Firefox/IE)](https://github.com/hchiam/in-browser-style-linter#step-2-set-up-your-browser-to-run-the-js-code)
 3. See red buttons.
 
 ## STEP 1: To add a setting, edit [this part](https://github.com/hchiam/in-browser-style-linter/blob/master/linter.js#L3) of the JS code:
