@@ -34,6 +34,7 @@ var settings = [
 ```
 
 ## STEP 2: Set up your browser to run the JS code:
+* Chrome extension: [In-Browser Style Linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
 * Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
 * Firefox: [Scratchpad](https://developer.mozilla.org/en-US/docs/Tools/Scratchpad)
 * Internet Explorer: F12 > Console > paste the whole code into the terminal (paste after the ">" symbol on the bottom) > Ctrl+Enter (or hit run)
