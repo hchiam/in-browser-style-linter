@@ -9,27 +9,27 @@ Do quick style checks on your page _after_ it renders, and _without leaving your
 ```js
 // Enter your desired settings here:
 var settings = [
-{
-    s: 'h1', // selector
-    p: 'color', // property
-    v: 'red' // expected value
-}
+    {
+        s: 'h1', // selector
+        p: 'color', // property
+        v: 'red' // expected value
+    }
 ];
 ```
 to something like this:
 ```js
 // Enter your desired settings here:
 var settings = [
-{
-    s: 'h1', // selector
-    p: 'color', // property
-    v: 'red' // expected value
-},
-{
-    s: 'p#description',
-    p: 'font-family',
-    v: 'avenir'
-}
+    {
+        s: 'h1', // selector
+        p: 'color', // property
+        v: 'red' // expected value
+    },
+    {
+        s: 'p#description',
+        p: 'font-family',
+        v: 'avenir'
+    }
 ];
 ```
 
