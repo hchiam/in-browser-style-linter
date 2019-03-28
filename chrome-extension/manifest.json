@@ -1,0 +1,20 @@
+{
+  "name": "In-Browser Style Linter",
+  "version": "1.0",
+  "description": "Do quick style checks on your page after it renders, and without leaving your browser.",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "linter.png"
+    }
+  },
+  "icons": {
+    "128": "linter.png"
+  },
+  "manifest_version": 2
+}
