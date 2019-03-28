@@ -9,6 +9,8 @@ var settings = [
     }
 ];
 
+removeAllErrorButtons();
+
 var errors = [];
 for (var i=0; i<settings.length; i++) {
     var error = lint(settings[i]);
@@ -46,7 +48,7 @@ function lint(setting) {
             alert(message);
         };
         btn.innerHTML = '!';
-        btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.15rem solid white; width: 2rem; text-align: center;';
+        btn.style.cssText = 'all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.15rem solid white; height: 1.5rem; width: 1.5rem; font-size: 1rem; text-align: center;';
         btn.title = message;
         btn.className = 'in-browser-linter-button';
         var spn = document.createElement("SPAN");
@@ -77,6 +79,13 @@ function settingPropertiesSet(selector, property, valueExpected) {
         return false;
     }
     return true;
+}
+
+function removeAllErrorButtons() {
+    var errorButtons = document.getElementsByClassName('in-browser-linter-button');
+    while (errorButtons.length>0) {
+        errorButtons[0].parentNode.removeChild(errorButtons[0]);
+    }
 }
 
 })();
