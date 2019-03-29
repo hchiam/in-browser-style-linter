@@ -55,12 +55,13 @@ clearErrorButtonsButton.addEventListener("click", function useSettings() {
 });
 
 function validateSettings(settingsString) {
+  var line = settingsString.split('\n');
   var safeToPutBracket = false;
-  for (var i=0; i<settingsString.length; i++) {
-    if (settingsString[i] == "'" || settingsString[i] == '"') {
+  for (var i = 0; i < line.length; i++) {
+    if (line[i] == "'" || line[i] == '"') {
       safeToPutBracket = !safeToPutBracket;
     }
-    if (!safeToPutBracket && settingsString[i] == '(') {
+    if (!safeToPutBracket && line[i] == '(') {
       return false;
     }
   }
