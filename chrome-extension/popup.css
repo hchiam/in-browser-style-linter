@@ -5,6 +5,10 @@
     transition: 0.5s;
 }
 
+html {
+    width: 600px;
+}
+
 body {
     display: flex;
     flex-wrap: wrap;
