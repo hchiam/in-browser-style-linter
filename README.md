@@ -10,9 +10,10 @@ Do quick style checks on your page _after_ it renders, and _without leaving your
 // Enter your desired settings here:
 var settings = [
     {
-        s: 'h1', // selector
-        p: 'color', // property
-        v: 'red' // expected value
+        s:'h1', // selector
+        p:'color', // property
+        v:['red','rgb(88, 96, 105)'], // acceptable expected values
+        // c:true // "contains" (actual value can contain expected value)
     }
 ];
 ```
