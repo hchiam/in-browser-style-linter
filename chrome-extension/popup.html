@@ -6,7 +6,16 @@
   <body>
     <button id="clear-error-buttons">Clear error buttons</button>
     <button id="use-settings">Use settings</button>
-    <textarea id="set-settings" cols="80" rows="20"></textarea>
+    <textarea id="set-variables" cols="80" rows="3" placeholder="// (OPTIONAL) Enter variables here for shared expected values:
+var sharedColor = 'red';"></textarea>
+    <textarea id="set-settings" cols="80" rows="20" placeholder="// Enter your desired settings here:
+var settings = [
+    {
+        s:'h1', // selector
+        p:'color', // property
+        v:sharedColor // expected value (can be a shared variable)
+    }
+];"></textarea>
     <div>More info: <a href="https://github.com/hchiam/in-browser-style-linter" target="_blank">here</a></div>
     <script src="popup.js"></script>
   </body>
