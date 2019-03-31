@@ -20,6 +20,7 @@ function lint(setting) {
     var property = setting.p || setting.property;
     var expectedValues = setting.v || setting.ev || setting.value || setting.expected || setting.expectedValue || setting.expectedValues;
     var checkIfContains = setting.c || setting.contains;
+    var innerHTML = setting.i || setting.innerHTML;
 
     if (!settingPropertiesSet(selector, property, expectedValues)) {
         return; // ignore invalid setting
@@ -53,6 +54,10 @@ function lint(setting) {
             }
         }
 
+        if (innerHTML && innerHTML !== element.innerHTML) {
+            continue; // ignore non-matching innerHTML
+        }
+
         var errorButton = createErrorButton(selector + pseudoelement, property, expectedValues, actualValue)
         element.appendChild(errorButton);
 
@@ -78,6 +83,7 @@ function createErrorButton(selector, property, expectedValues, actualValue) {
     button.className = 'in-browser-linter-button';
     var span = document.createElement("SPAN");
     span.style.cssText = 'all: initial; position: relative; width: 0; height: 0;';
+    span.className = 'in-browser-linter-button';
     span.appendChild(button);
     return span;
 }

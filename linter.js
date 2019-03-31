@@ -6,7 +6,8 @@ var settings = [
         s:'a', // selector
         p:'color', // property
         v:['red','rgb(88, 96, 105)'], // acceptable expected values
-        // c:true // "contains" (actual value can contain expected value)
+        // c:true, // "contains" (actual value can contain expected value)
+        // i:'Some innerHTML text.' // innerHTML
     }
 ];
 
@@ -30,6 +31,7 @@ function lint(setting) {
     var property = setting.p || setting.property;
     var expectedValues = setting.v || setting.ev || setting.value || setting.expected || setting.expectedValue || setting.expectedValues;
     var checkIfContains = setting.c || setting.contains;
+    var innerHTML = setting.i || setting.innerHTML;
 
     if (!settingPropertiesSet(selector, property, expectedValues)) {
         return; // ignore invalid setting
@@ -48,7 +50,7 @@ function lint(setting) {
     for (var j=0; j<elements.length; j++) {
         var element = elements[j];
 
-        actualValue = element ? window.getComputedStyle(element, pseudoelement).getPropertyValue(property) : '';
+        var actualValue = element ? window.getComputedStyle(element, pseudoelement).getPropertyValue(property) : '';
         var matchesActualValue = (expectedValues.indexOf(actualValue) !== -1);
         if (matchesActualValue) {
             continue; // ignore correct
@@ -61,6 +63,10 @@ function lint(setting) {
             if (isAnyFoundInsideActualValue) {
                 continue; // ignore correct
             }
+        }
+
+        if (innerHTML && innerHTML !== element.innerHTML) {
+            continue; // ignore non-matching innerHTML
         }
 
         var errorButton = createErrorButton(selector + pseudoelement, property, expectedValues, actualValue)
@@ -88,6 +94,7 @@ function createErrorButton(selector, property, expectedValues, actualValue) {
     button.className = 'in-browser-linter-button';
     var span = document.createElement("SPAN");
     span.style.cssText = 'all: initial; position: relative; width: 0; height: 0;';
+    span.className = 'in-browser-linter-button';
     span.appendChild(button);
     return span;
 }

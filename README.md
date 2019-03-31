@@ -16,6 +16,7 @@ var settings = [
         p:'color', // property
         v:['red','rgb(88, 96, 105)'], // acceptable expected values
         // c:true // "contains" (actual value can contain expected value)
+        // i:'Some innerHTML text.' // innerHTML
     }
 ];
 ```
