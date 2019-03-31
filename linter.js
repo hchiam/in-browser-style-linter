@@ -3,7 +3,7 @@
 // Enter your desired settings here:
 var settings = [
     {
-        s:'h1', // selector
+        s:'a', // selector
         p:'color', // property
         v:['red','rgb(88, 96, 105)'], // acceptable expected values
         // c:true // "contains" (actual value can contain expected value)
@@ -38,11 +38,17 @@ function lint(setting) {
     // let user give an array of acceptable values (or just one value string):
     expectedValues = Array.isArray(expectedValues) ? expectedValues : [expectedValues];
 
+    var pseudoelement = selector.match(/:[^ ]+$/);
+    pseudoelement = pseudoelement ? pseudoelement[0] : '';
+    if (pseudoelement) {
+        selector = selector.replace(pseudoelement, '');
+    }
+    
     var elements = document.querySelectorAll(selector + ':not(.in-browser-linter-button)');
     for (var j=0; j<elements.length; j++) {
         var element = elements[j];
 
-        var actualValue = element ? window.getComputedStyle(element).getPropertyValue(property) : '';
+        actualValue = element ? window.getComputedStyle(element, pseudoelement).getPropertyValue(property) : '';
         var matchesActualValue = (expectedValues.indexOf(actualValue) !== -1);
         if (matchesActualValue) {
             continue; // ignore correct
@@ -57,11 +63,11 @@ function lint(setting) {
             }
         }
 
-        var errorButton = createErrorButton(selector, property, expectedValues, actualValue)
+        var errorButton = createErrorButton(selector + pseudoelement, property, expectedValues, actualValue)
         element.appendChild(errorButton);
 
         errorSummary = {
-            selector:selector,
+            selector:selector + pseudoelement,
             property:property,
             expectedValues:expectedValues,
             actualValue:actualValue

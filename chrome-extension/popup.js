@@ -8,7 +8,7 @@ chrome.storage.sync.get('settings', function(data) {
 settingsTextarea.value = data.settings.replace(/^\s+|\s+$/g, '') || `// Enter your desired settings here:
 var settings = [
     {
-        s:'h1', // selector
+        s:'a', // selector
         p:'color', // property
         v:'red' // expected value
     }
@@ -27,7 +27,7 @@ settingsButton.addEventListener("click", function useSettings() {
 
 var settings = [
     {
-        s:'h1', // selector
+        s:'a', // selector
         p:'color', // property
         v:'red' // expected value
     }
