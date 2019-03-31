@@ -48,3 +48,63 @@ var settings = [
 ![image](https://github.com/hchiam/in-browser-style-linter/blob/master/example-screenshot.png)
 
 Clicking on the button shows the expected and actual values.
+
+# More info:
+
+## Basic:
+
+Minimal required info:
+
+```js
+var settings = [
+    {
+        selector:'a', // a CSS selector like 'div span a:hover'
+        property:'color', // a CSS property
+        value:'red' // the expected value after page render
+    }
+];
+```
+
+## Contains Value:
+
+To relax the matching of the property value to simply "contain" the expected value, set the optional parameter to true:
+
+```js
+var settings = [
+    {
+        selector:'a',
+        property:'background',
+        value:'lightblue',
+        contains:true // would not flag 'lightblue url("img_tree.gif") no-repeat fixed center' as error
+    }
+];
+```
+
+## Multiple Allowable Values:
+
+To specify several allowable values, use an array:
+
+```js
+var settings = [
+    {
+        selector:'a',
+        property:'color',
+        value:['red', 'rgb(88, 96, 105)']
+    }
+];
+```
+
+## innerHTML:
+
+To specify elements that also have a specific innerHTML, set the optional parameter value:
+
+```js
+var settings = [
+    {
+        selector:'a',
+        property:'color',
+        innerHTML:'Some innerHTML text.', // check the color of <a> tags with this innerHTML
+        value:'rgb(88, 96, 105)'
+    }
+];
+```
