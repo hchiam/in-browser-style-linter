@@ -12,7 +12,7 @@ Or follow this demo: https://goo.gl/ou1KEv
 // Enter your desired settings here:
 var settings = [
     {
-        s:'h1', // selector
+        s:'a', // selector
         p:'color', // property
         v:['red','rgb(88, 96, 105)'], // acceptable expected values
         // c:true // "contains" (actual value can contain expected value)
@@ -24,7 +24,7 @@ to something like this:
 // Enter your desired settings here:
 var settings = [
     {
-        s: 'h1', // selector
+        s: 'a', // selector
         p: 'color', // property
         v: 'red' // expected value
     },
