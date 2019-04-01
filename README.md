@@ -47,7 +47,7 @@ var settings = [
 
 ![image](https://github.com/hchiam/in-browser-style-linter/blob/master/example-screenshot.png)
 
-Clicking on the button shows the expected and actual values.
+Hovering over the error button shows the expected and actual values. See this demo: https://goo.gl/ou1KEv
 
 # More info:
 
