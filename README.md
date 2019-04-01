@@ -51,7 +51,8 @@ Clicking on the button shows the expected and actual values.
 
 # More info:
 
-## Basic:
+<details>
+<summary><strong>Basic</strong></summary>
 
 Minimal required info:
 
@@ -64,8 +65,10 @@ var settings = [
     }
 ];
 ```
+</details>
 
-## Contains Value:
+<details>
+<summary><strong>Contains Value</strong></summary>
 
 To relax the matching of the property value to simply "contain" the expected value, set the optional parameter to true:
 
@@ -79,8 +82,10 @@ var settings = [
     }
 ];
 ```
+</details>
 
-## Multiple Allowable Values:
+<details>
+<summary><strong>Multiple Allowable Values</strong></summary>
 
 To specify several allowable values, use an array:
 
@@ -93,10 +98,12 @@ var settings = [
     }
 ];
 ```
+</details>
 
-## innerHTML:
+<details>
+<summary><strong>Specify innerHTML</strong></summary>
 
-To specify elements that also have a specific innerHTML, set the optional parameter value:
+To specify elements that have a specific innerHTML (in addition to the CSS selector), set the optional parameter value:
 
 ```js
 var settings = [
@@ -108,3 +115,4 @@ var settings = [
     }
 ];
 ```
+</details>
