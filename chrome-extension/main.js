@@ -29,7 +29,7 @@ function lint(setting) {
     // let user give an array of acceptable values (or just one value string):
     expectedValues = Array.isArray(expectedValues) ? expectedValues : [expectedValues];
 
-    var pseudoelement = selector.match(/:[^ ]+$/);
+    var pseudoelement = selector.match(/:(?!.*not)[^ ]+$/);
     pseudoelement = pseudoelement ? pseudoelement[0] : '';
     if (pseudoelement) {
         selector = selector.replace(pseudoelement, '');
