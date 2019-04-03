@@ -37,6 +37,8 @@ var settings = [
 ];
 ```
 
+(For details, see [more info](https://github.com/hchiam/in-browser-style-linter#more-info-click-to-expand).)
+
 ## STEP 2: Set up your browser to run the JS code:
 * Chrome extension: [In-Browser Style Linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
 * Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
@@ -52,7 +54,7 @@ Hovering over the error button shows the expected and actual values. See this de
 # More info: (click to expand)
 
 <details>
-<summary><strong>Basic</strong></summary>
+<summary><strong>s+p+v = Basic</strong></summary>
 
 Minimal required info:
 
@@ -81,7 +83,7 @@ var settings = [
 </details>
 
 <details>
-<summary><strong>Contains Value</strong></summary>
+<summary><strong>c = Contains Value</strong></summary>
 
 To relax the matching of the property value to simply "contain" the expected value, set the optional parameter to true:
 
@@ -95,12 +97,25 @@ var settings = [
     }
 ];
 ```
+
+Alternatively:
+
+```js
+var settings = [
+    {
+        s:'a',
+        p:'background',
+        v:'lightblue',
+        c:true // would not flag 'lightblue url("img_tree.gif") no-repeat fixed center' as error
+    }
+];
+```
 </details>
 
 <details>
-<summary><strong>Multiple Allowable Values</strong></summary>
+<summary><strong>[] = Multiple Allowable Values</strong></summary>
 
-To specify several allowable values, use an array:
+To specify several allowable expected values, use an array:
 
 ```js
 var settings = [
@@ -111,10 +126,13 @@ var settings = [
     }
 ];
 ```
+
+This is also compatible with the "contains" option (see above).
+
 </details>
 
 <details>
-<summary><strong>Specify innerHTML</strong></summary>
+<summary><strong>i = Specify innerHTML</strong></summary>
 
 To specify elements that have a specific innerHTML (in addition to the CSS selector), set the optional parameter value:
 
@@ -125,6 +143,19 @@ var settings = [
         property:'color',
         innerHTML:'Some innerHTML text.', // check the color of <a> tags with this innerHTML
         value:'rgb(88, 96, 105)'
+    }
+];
+```
+
+Alternatively:
+
+```js
+var settings = [
+    {
+        p:'a',
+        p:'color',
+        i:'Some innerHTML text.', // check the color of <a> tags with this innerHTML
+        v:'rgb(88, 96, 105)'
     }
 ];
 ```
