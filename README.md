@@ -65,6 +65,19 @@ var settings = [
     }
 ];
 ```
+
+All parameters have short forms to let you save on keystrokes. Here's an equivalent to the example above:
+
+```js
+var settings = [
+    {
+        s:'a', // s is for selector
+        p:'color', // p is for property
+        v:'red' // v (or ev) is for expected value
+    }
+];
+```
+
 </details>
 
 <details>
