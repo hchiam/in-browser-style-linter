@@ -49,7 +49,7 @@ var settings = [
 
 Hovering over the error button shows the expected and actual values. See this demo: https://goo.gl/ou1KEv
 
-# More info:
+# More info: (click to expand)
 
 <details>
 <summary><strong>Basic</strong></summary>
