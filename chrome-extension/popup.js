@@ -4,8 +4,8 @@ let settingsButton = document.getElementById('use-settings');
 let settingsTextarea = document.getElementById('set-settings');
 let clearErrorButtonsButton = document.getElementById('clear-error-buttons');
 
-chrome.storage.sync.get('settings', function(data) {
-settingsTextarea.value = data.settings.replace(/^\s+|\s+$/g, '') || `// Enter your desired settings here:
+chrome.storage.sync.get('settings', function getSettings(data) {
+  settingsTextarea.value = data.settings ? data.settings.replace(/^\s+|\s+$/g, '') : `// Enter your desired settings here:
 var settings = [
     {
         s:'a', // selector
@@ -16,7 +16,7 @@ var settings = [
 });
 
 settingsTextarea.onkeyup = function setSettings() {
-  chrome.storage.sync.set({settings: settingsTextarea.value}, function() {});
+  chrome.storage.sync.set({'settings': settingsTextarea.value}, function() {});
 };
 
 settingsButton.addEventListener("click", function useSettings() {
@@ -43,7 +43,7 @@ var settings = [
   });
 });
 
-clearErrorButtonsButton.addEventListener("click", function useSettings() {
+clearErrorButtonsButton.addEventListener("click", function clearSettings() {
   chrome.tabs.executeScript(null, {
     code: `
       var errorButtons = document.getElementsByClassName('in-browser-linter-button');
@@ -55,14 +55,20 @@ clearErrorButtonsButton.addEventListener("click", function useSettings() {
 });
 
 function validateSettings(settingsString) {
-  var line = settingsString.split('\n');
-  var safeToPutBracket = false;
-  for (var i = 0; i < line.length; i++) {
-    if (line[i] == "'" || line[i] == '"') {
-      safeToPutBracket = !safeToPutBracket;
-    }
-    if (!safeToPutBracket && line[i] == '(') {
-      return false;
+  var lines = settingsString.split('\n');
+  var lastQuotationMark = '';
+  var safeToPutBracket = false; // when not inside quotation marks
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    for (var c = 0; c < line.length; c++) {
+      var character = line[c];
+      if ((character == "'" || character == '"' || character == '`') && (lastQuotationMark === '' || character === lastQuotationMark)) {
+        safeToPutBracket = !safeToPutBracket;
+        lastQuotationMark = (character === lastQuotationMark) ? '' : character;
+      }
+      if (!safeToPutBracket && (character == '(' || character == ')')) {
+        return false;
+      }
     }
   }
   return true;
