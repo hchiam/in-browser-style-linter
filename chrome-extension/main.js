@@ -2,6 +2,10 @@
 
 removeAllErrorButtons();
 
+if (typeof settings === 'undefined' || settings === null) {
+    return;
+}
+
 var errors = [];
 for (var i=0; i<settings.length; i++) {
     var error = lint(settings[i]);
