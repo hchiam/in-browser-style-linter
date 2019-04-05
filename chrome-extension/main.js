@@ -6,17 +6,30 @@ if (typeof settings === 'undefined' || settings === null) {
     return;
 }
 
-var errors = [];
-for (var i=0; i<settings.length; i++) {
-    var error = lint(settings[i]);
-    if (error) {
-        errors.push(error);
+try {
+    var errors = [];
+    for (var i=0; i<settings.length; i++) {
+        var error = lint(settings[i]);
+        if (error) {
+            errors.push(error);
+        }
     }
-}
 
-alert('Finished linting. Hover over the buttons.\n\nA summary is also listed in the console log.');
-console.log('Linter found these errors: (click to expand)');
-console.log(errors);
+    alert('Finished linting. Hover over the buttons.\n\nA summary is also listed in the console log.');
+    console.log('Linter found these errors: (click to expand)');
+    console.log(errors);
+} catch (exception) {
+    console.log(exception);
+    alert(`Something went wrong. Make sure your input is something like this: 
+
+var settings = [
+    {
+        s:'a', // selector
+        p:'color', // property
+        v:'red' // expected value
+    }
+];`);
+}
 
 function lint(setting) {
     var errorSummary = '';
