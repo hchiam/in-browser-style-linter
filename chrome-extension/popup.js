@@ -60,7 +60,7 @@ function validateSettings(settingsString) {
   var safeToPutBracket = false; // when not inside quotation marks
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i];
-    for (var c = 0; c < line.length; c++) {
+    for (var c = 0, foundComment = false; c < line.length && !foundComment; c++) {
       var character = line[c];
       if ((character == "'" || character == '"') && (lastQuotationMark === '' || character === lastQuotationMark)) {
         safeToPutBracket = !safeToPutBracket;
@@ -69,6 +69,7 @@ function validateSettings(settingsString) {
       if (!safeToPutBracket && (character == '(' || character == ')')) {
         return false;
       }
+      foundComment = (c < line.length-1 && character == '/' && line[c+1] == '/');
     }
   }
   return true;
