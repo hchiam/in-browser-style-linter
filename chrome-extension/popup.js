@@ -4,7 +4,7 @@ let settingsButton = document.getElementById('use-settings');
 let settingsTextarea = document.getElementById('set-settings');
 let clearErrorButtonsButton = document.getElementById('clear-error-buttons');
 
-chrome.storage.sync.get('settings', function getSettings(data) {
+chrome.storage.local.get('settings', function getSettings(data) {
   settingsTextarea.value = data.settings ? data.settings.replace(/^\s+|\s+$/g, '') : `// Enter your desired settings here:
 var settings = [
     {
@@ -16,7 +16,7 @@ var settings = [
 });
 
 settingsTextarea.onkeyup = function setSettings() {
-  chrome.storage.sync.set({'settings': settingsTextarea.value}, function() {});
+  chrome.storage.local.set({'settings': settingsTextarea.value}, function() {});
 };
 
 settingsButton.addEventListener("click", function useSettings() {
