@@ -62,7 +62,7 @@ function validateSettings(settingsString) {
     var line = lines[i];
     for (var c = 0; c < line.length; c++) {
       var character = line[c];
-      if ((character == "'" || character == '"' || character == '`') && (lastQuotationMark === '' || character === lastQuotationMark)) {
+      if ((character == "'" || character == '"') && (lastQuotationMark === '' || character === lastQuotationMark)) {
         safeToPutBracket = !safeToPutBracket;
         lastQuotationMark = (character === lastQuotationMark) ? '' : character;
       }
