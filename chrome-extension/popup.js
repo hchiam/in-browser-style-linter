@@ -35,6 +35,8 @@ var settings = [
     settingsTextarea.focus();
     return; // do not continue
   }
+
+  // actually use the settings:
   chrome.tabs.executeScript(null, {
     code: settingsTextarea.value
   }, function() {
@@ -49,6 +51,10 @@ clearErrorButtonsButton.addEventListener("click", function clearSettings() {
       var errorButtons = document.getElementsByClassName('in-browser-linter-button');
       while (errorButtons.length>0) {
           errorButtons[0].parentNode.removeChild(errorButtons[0]);
+      }
+      var errorModal = document.getElementById('in-browser-linter-modal');
+      if (errorModal) {
+          errorModal.parentNode.removeChild(errorModal);
       }
     `
   });
