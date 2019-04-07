@@ -184,8 +184,6 @@ function createErrorModal(errors) {
     document.body.insertBefore(div, document.body.firstChild);
 }
 
-var count = 0;
-
 function createErrorPointerEntry(error, container){
     var p = document.createElement("p");
     p.innerHTML = error.selector + ':<br/>' + error.property + ':<br/>&nbsp;&nbsp;WANT: ' + error.expectedValues.join('<br/>&nbsp;&nbsp;&nbsp;&nbsp;or: ') + '<br/>&nbsp;&nbsp;HAVE: ' + error.actualValue;
@@ -193,7 +191,7 @@ function createErrorPointerEntry(error, container){
     var button = document.createElement("button");
     button.innerHTML = '&rarr; Locate example';
     button.style.cssText = 'all: initial; background: rgba(255,0,0,0.5); padding: 0.5rem; margin: 0.25rem; border-radius: 5px; font-family: avenir, arial, tahoma;';
-    button.id = 'pointer-'+ count;
+    button.id = 'pointer-'+ error.selector.replace(/[ .,#$\^&\*;:{}=~()]/g,'_');
     button.title = 'Click to scroll';
     button.onmouseover = function() {
         button.style.cssText = onHoverStyle;
