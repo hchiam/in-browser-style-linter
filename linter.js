@@ -58,6 +58,7 @@ function lint(setting) {
 
     // let user give an array of acceptable values (or just one value string):
     expectedValues = Array.isArray(expectedValues) ? expectedValues : [expectedValues];
+    expectedValues = expectedValues.map(hexToRgbColor);
 
     var pseudoelement = selector.match(/:(?!.*not)[^ ]+$/);
     pseudoelement = pseudoelement ? pseudoelement[0] : '';
@@ -278,6 +279,22 @@ function moveToLocatedError(error) {
     var targetCenterX = error.element.getBoundingClientRect().width/2 + error.element.getBoundingClientRect().left + window.scrollX;
     var targetCenterY = error.element.getBoundingClientRect().height/2 + error.element.getBoundingClientRect().top + window.scrollY;
     window.scrollTo(targetCenterX, targetCenterY);
+}
+
+function hexToRgbColor(hex) {
+    var shorthandHexPattern = /^#([a-f\d])([a-f\d])([a-f\d])$/i; // e.g. #123
+    var longhandHexCode = hex.replace(shorthandHexPattern, function(entire, r, g, b) {
+        return '#' + r + r + g + g + b + b;
+    });
+    var longhandHexPattern = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(longhandHexCode); // e.g. #123456
+    if (longhandHexPattern) {
+        return 'rgb(' +
+            parseInt(longhandHexPattern[1], 16) + ', ' +
+            parseInt(longhandHexPattern[2], 16) + ', ' +
+            parseInt(longhandHexPattern[3], 16) + ')';
+    } else {
+        return hex;
+    }
 }
 
 })();
