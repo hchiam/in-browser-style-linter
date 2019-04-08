@@ -154,7 +154,7 @@ var offHoverStyle ='all: initial; background: rgba(255,0,0,0.5); padding: 0.5rem
 
 function createErrorModal(errors) {
     var div = document.createElement("div");
-    div.style.cssText = 'all: initial; position: fixed; left: 25%; top: 25vh; width: 50%; padding: 1rem; z-index: 9999; border: 1rem solid rgba(255, 0, 0, 0.5); background: rgba(255,255,255,0.75); color: black; overflow-y: auto; border-radius: 5px; font-family: avenir, arial, tahoma;';
+    div.style.cssText = 'all: initial; position: fixed; left: 25%; top: 25vh; width: 50%; height: 50%; padding: 1rem; z-index: 9999; border: 1rem solid rgba(255, 0, 0, 0.5); background: rgba(255,255,255,0.75); color: black; overflow-y: auto; border-radius: 5px; font-family: avenir, arial, tahoma;';
     div.id = 'in-browser-linter-modal';
 
     var h1 = document.createElement("H1");
@@ -191,7 +191,7 @@ function createErrorPointerEntry(error, container){
     var button = document.createElement("button");
     button.innerHTML = '&rarr; Locate example';
     button.style.cssText = 'all: initial; background: rgba(255,0,0,0.5); padding: 0.5rem; margin: 0.25rem; border-radius: 5px; font-family: avenir, arial, tahoma;';
-    button.id = 'pointer-'+ error.selector.replace(/[ .,#$\^&\*;:{}=~()]/g,'_');
+    button.id = 'pointer-'+ (error.selector + '-' + error.property).replace(/[ .,#$\^&\*;:{}=~()]/g,'_');
     button.title = 'Click to scroll';
     button.onmouseover = function() {
         button.style.cssText = onHoverStyle;
