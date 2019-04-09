@@ -33,15 +33,15 @@ try {
     console.log(errors);
 } catch (exception) {
     console.log(exception);
-    alert(`Something went wrong. Make sure your input is something like this: 
-
-var settings = [
-    {
-        s:'a', // selector
-        p:'color', // property
-        v:'red' // expected value
-    }
-];`);
+    alert("Something went wrong. Make sure your input is something like this: \n" +
+          "\n" +
+          "var settings = [\n" +
+          "    {\n" +
+          "        s:'a', // selector\n" +
+          "        p:'color', // property\n" +
+          "        v:'red' // expected value\n" +
+          "    }\n" +
+          "];");
 }
 
 function lint(setting) {
