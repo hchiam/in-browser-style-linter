@@ -151,6 +151,7 @@ function createErrorModal(errors) {
     var div = document.createElement("div");
     div.style.cssText = 'all: initial; position: fixed; left: 25%; top: 25vh; width: 50%; height: 50%; padding: 1rem; z-index: 9999; border: 1rem solid rgba(255, 0, 0, 0.5); background: rgba(255,255,255,0.75); color: black; overflow-y: auto; border-radius: 5px; font-family: avenir, arial, tahoma; box-shadow: inset 0 -50px 50px -55px rgba(0, 0, 0, 1);';
     div.id = 'in-browser-linter-modal';
+    makeElementDraggable(div);
 
     var h1 = document.createElement("H1");
     h1.innerHTML = 'Summary of Linter Errors:';
@@ -288,6 +289,39 @@ function hexToRgbColor(hex) {
             parseInt(longhandHexPattern[3], 16) + ')';
     } else {
         return hex;
+    }
+}
+
+function makeElementDraggable(element) {
+    var x1 = 0;
+    var y1 = 0;
+    var x2 = 0;
+    var y2 = 0;
+    element.onmousedown = dragOnMouseDown;
+
+    function dragOnMouseDown(event) {
+        var event = event || window.event;
+        event.preventDefault();
+        x2 = event.clientX;
+        y2 = event.clientY;
+        document.onmouseup = stopDragging;
+        document.onmousemove = dragElement;
+    }
+
+    function stopDragging() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+
+    function dragElement(event) {
+        var event = event || window.event;
+        event.preventDefault();
+        x1 = x2 - event.clientX;
+        y1 = y2 - event.clientY;
+        x2 = event.clientX;
+        y2 = event.clientY;
+        element.style.left = (element.offsetLeft - x1) + "px";
+        element.style.top = (element.offsetTop - y1) + "px";
     }
 }
 
