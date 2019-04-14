@@ -316,12 +316,12 @@ function makeElementDraggable(element) {
     function dragElement(event) {
         var event = event || window.event;
         event.preventDefault();
-        x1 = x2 - event.clientX;
-        y1 = y2 - event.clientY;
-        x2 = event.clientX;
-        y2 = event.clientY;
-        element.style.left = (element.offsetLeft - x1) + "px";
-        element.style.top = (element.offsetTop - y1) + "px";
+        xChange = event.clientX - x;
+        yChange = event.clientY - y;
+        x = event.clientX;
+        y = event.clientY;
+        element.style.left = (element.offsetLeft + xChange) + "px";
+        element.style.top = (element.offsetTop + yChange) + "px";
     }
 }
 
