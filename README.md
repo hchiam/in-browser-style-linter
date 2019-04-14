@@ -12,28 +12,35 @@ Or follow this demo: https://goo.gl/ou1KEv
 // Enter your desired settings here:
 var settings = [
     {
-        s:'a', // selector
-        p:'color', // property
-        v:['red','rgb(88, 96, 105)'], // acceptable expected values
-        // c:true // "contains" (actual value can contain expected value)
-        // i:'Some innerHTML text.' // innerHTML
+        selector:'a', // CSS selector
+        property:'color', // CSS property to check
+        expectedValues:['red','rgb(88, 96, 105)'], // acceptable expected values of property
+        // contains:true // OPTIONAL: boolean to say actual value can at least contain the expected value
+        // innerHTML:'Some innerHTML text.' // OPTIONAL: you can be more specific than CSS selectors
     }
 ];
 ```
-to something like this:
+to something like this (try it on https://www.google.com):
 ```js
 // Enter your desired settings here:
 var settings = [
-    {
-        s: 'a', // selector
-        p: 'color', // property
-        v: 'red' // expected value
-    },
-    {
-        s: 'p#description',
-        p: 'font-family',
-        v: 'avenir'
-    }
+{
+    s:'a',
+    p:'font-family',
+    v:'avenir',
+    i:'About'
+},
+{
+    s:'a.gb_d',
+    p:'font-family',
+    v:'avenir',
+    c:true
+},
+{
+    s:'.gLFyf.gsfi',
+    p:'color',
+    v:['#eee','rgb(88, 96, 105)','#3e3e3e'],
+},
 ];
 ```
 
