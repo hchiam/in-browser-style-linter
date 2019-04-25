@@ -167,3 +167,7 @@ var settings = [
 ];
 ```
 </details>
+
+# Like this project?
+
+Another Chrome extension in the works: https://github.com/hchiam/in-browser-test-automator
