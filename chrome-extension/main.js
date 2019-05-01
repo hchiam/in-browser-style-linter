@@ -98,7 +98,7 @@ function lint(setting) {
 }
 
 function createErrorButton(selector, property, expectedValues, actualValue) {
-    var message = selector + ':\n' + property + ':\n\tWANT: ' + expectedValues.join('\n\t  or: ') + '\n\tHAVE: ' + actualValue;
+    var message = selector + ':\n' + property + ':\n    WANT: ' + expectedValues.join('\n      or: ') + '\n    HAVE: ' + actualValue;
     var button = document.createElement("BUTTON");
     button.onclick = function() {
         alert(message);
