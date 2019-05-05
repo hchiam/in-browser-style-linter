@@ -149,16 +149,13 @@ var offHoverStyle ='all: initial; background: rgba(255,0,0,0.5); padding: 0.5rem
 
 function createErrorModal(errors) {
     var div = document.createElement("div");
+    div.className = 'in-browser-linter-modal';
     div.style.cssText = 'all: initial; position: fixed; left: 25%; top: 25vh; width: 50%; height: 50%; padding: 1rem; z-index: 9999; border: 1rem solid rgba(255, 0, 0, 0.5); background: rgba(255,255,255,0.75); color: black; overflow-y: auto; border-radius: 5px; font-family: avenir, arial, tahoma; box-shadow: inset 0 -50px 50px -55px rgba(0, 0, 0, 1);';
     div.id = 'in-browser-linter-modal';
     makeElementDraggable(div);
 
-    var h1 = document.createElement("H1");
-    h1.innerHTML = 'Summary of Linter Errors:';
-    h1.style.cssText = 'all: initial; font-family: avenir, arial, tahoma; font-weight: bold;';
-    div.appendChild(h1);
-
     var button = document.createElement("button");
+    button.className = 'in-browser-linter-modal';
     button.innerHTML = 'X';
     button.style.cssText = 'all: initial; position: absolute; right: 1rem; background: red; padding: 0.5rem; margin: 0.25rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
     button.title = 'Close';
@@ -173,6 +170,19 @@ function createErrorModal(errors) {
     };
     div.appendChild(button);
 
+    var pointerPreview = document.createElement("div");
+    pointerPreview.className = 'in-browser-linter-modal';
+    pointerPreview.id = 'in-browser-linter-modal-pointer-preview'
+    pointerPreview.style.cssText = 'text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
+    pointerPreview.innerHTML = '<i class="in-browser-linter-modal">(Hover over an element to preview its identifier.)</i>';
+    div.appendChild(pointerPreview);
+
+    var h1 = document.createElement("H1");
+    h1.className = 'in-browser-linter-modal';
+    h1.innerHTML = 'Summary of Linter Errors:';
+    h1.style.cssText = 'all: initial; font-family: avenir, arial, tahoma; font-weight: bold;';
+    div.appendChild(h1);
+
     for (var e=0; e<errors.length; e++) {
         createErrorPointerEntry(errors[e], div);
     }
@@ -182,9 +192,11 @@ function createErrorModal(errors) {
 
 function createErrorPointerEntry(error, container){
     var p = document.createElement("p");
+    p.className = 'in-browser-linter-modal';
     p.innerHTML = error.selector + ':<br/>' + error.property + ':<br/>&nbsp;&nbsp;WANT: ' + error.expectedValues.join('<br/>&nbsp;&nbsp;&nbsp;&nbsp;or: ') + '<br/>&nbsp;&nbsp;HAVE: ' + error.actualValue;
     
     var button = document.createElement("button");
+    button.className = 'in-browser-linter-modal';
     button.innerHTML = '&rarr; Locate example';
     button.style.cssText = 'all: initial; background: rgba(255,0,0,0.5); padding: 0.5rem; margin: 0.25rem; border-radius: 5px; font-family: avenir, arial, tahoma;';
     button.id = 'pointer-'+ (error.selector + '-' + error.property).replace(/[ .,#$\^&\*;:{}=~()]/g,'_');
@@ -293,17 +305,15 @@ function hexToRgbColor(hex) {
 }
 
 function makeElementDraggable(element) {
-    var x1 = 0;
-    var y1 = 0;
-    var x2 = 0;
-    var y2 = 0;
+    var x = 0;
+    var y = 0;
     element.onmousedown = dragOnMouseDown;
 
     function dragOnMouseDown(event) {
         var event = event || window.event;
         event.preventDefault();
-        x2 = event.clientX;
-        y2 = event.clientY;
+        x = event.clientX;
+        y = event.clientY;
         document.onmouseup = stopDragging;
         document.onmousemove = dragElement;
     }
@@ -316,12 +326,67 @@ function makeElementDraggable(element) {
     function dragElement(event) {
         var event = event || window.event;
         event.preventDefault();
-        xChange = event.clientX - x;
-        yChange = event.clientY - y;
+        var xChange = event.clientX - x;
+        var yChange = event.clientY - y;
         x = event.clientX;
         y = event.clientY;
         element.style.left = (element.offsetLeft + xChange) + "px";
         element.style.top = (element.offsetTop + yChange) + "px";
+    }
+}
+
+function getIdentifier(event) {
+    var e = event.target || event;
+    var tag = (e.tagName) ? e.tagName.trim().toLowerCase() : '';
+    var id = (e.id) ? '#' + e.id.trim() : '';
+    var classes = (e.className && e.className !== '') ? '.' + e.className.trim().replace(/ +/g,'.') : '';
+    var identifier = tag + id + classes;
+    return identifier;
+}
+
+function getParentIdentifier(event) {
+    var e = event.parentElement || event.target.parentElement;
+    var tag = (e.tagName) ? e.tagName.trim().toLowerCase() : '';
+    var id = (e.id) ? '#' + e.id.trim() : '';
+    var classes = (e.className) ? '.' + e.className.trim().replace(/ /g,'.') : '';
+    var identifier = tag + id + classes;
+    return identifier;
+}
+
+function isIdentifierUnique(identifier) {
+    return (typeof document.querySelectorAll(identifier)[1]) === 'undefined'; // index 1 should not exist
+}
+
+document.addEventListener('mouseover', pointerPreviewOnMouseOver, false);
+function pointerPreviewOnMouseOver(event) {
+    var isModalOpen = document.getElementById('in-browser-linter-modal');
+    if (!isModalOpen) {
+        return;
+    }
+    var e = event.target;
+    var classes = (e.className && e.className !== '') ? '.' + e.className.trim().replace(/ +/g,'.') : '';
+    var isInModal = classes.includes('in-browser-linter-modal');
+    var pointerPreview = document.getElementById('in-browser-linter-modal-pointer-preview');
+    if (!isInModal) {
+        var parentIdentifier = ''
+        var identifier = getIdentifier(event);
+        var isUnique = isIdentifierUnique(identifier);
+        if (!isUnique) {
+            // see if prepending parent identifier would make identifier unique
+            parentIdentifier = getParentIdentifier(event);
+            var identifierWithParentPrepended = parentIdentifier + '>' + identifier;
+            isUnique = isIdentifierUnique(identifierWithParentPrepended);
+        }
+        if (isUnique) {
+            pointerPreview.style.cssText = 'background: #41f4ca; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
+            pointerPreview.innerHTML = `Your pointer is hovering over: <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-modal'>${identifier}</strong></div>`;
+        } else {
+            pointerPreview.style.cssText = 'background: #f4bc42; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
+            pointerPreview.innerHTML = `Your pointer is hovering over: <i class='in-browser-linter-modal' style="color:red">(NOT UNIQUE. Try a different part?)</i> <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-modal'>${identifier}</strong></div>`;
+        }
+    } else {
+        pointerPreview.style.cssText = 'text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
+        pointerPreview.innerHTML = '<i class="in-browser-linter-modal">(Hover over an element to preview its identifier.)</i>';
     }
 }
 
