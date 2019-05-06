@@ -62,7 +62,7 @@ Hovering over the error button shows the expected and actual values. See this de
 # More info: (click to expand)
 
 <details>
-<summary><strong>s+p+v = Basic</strong></summary>
+<summary><strong>Basics ("SVP")</strong></summary>
 
 Minimal required info:
 
@@ -91,7 +91,7 @@ var settings = [
 </details>
 
 <details>
-<summary><strong>c = Contains Value</strong></summary>
+<summary><strong>c is for Contains Value</strong></summary>
 
 To relax the matching of the property value to simply "contain" the expected value, set the optional parameter to true:
 
@@ -121,7 +121,7 @@ var settings = [
 </details>
 
 <details>
-<summary><strong>[] = Multiple Allowable Values</strong></summary>
+<summary><strong>Multiple Allowable Values = []</strong></summary>
 
 To specify several allowable expected values, use an array:
 
@@ -140,7 +140,7 @@ This is also compatible with the "contains" option (see above).
 </details>
 
 <details>
-<summary><strong>i = Specify innerHTML</strong></summary>
+<summary><strong>i Can Be More Specific with innerHTML</strong></summary>
 
 To specify elements that have a specific innerHTML (in addition to the CSS selector), set the optional parameter value:
 
