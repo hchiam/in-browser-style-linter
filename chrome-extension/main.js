@@ -33,7 +33,7 @@ try {
           "    {\n" +
           "        s:'a', // selector\n" +
           "        p:'color', // property\n" +
-          "        v:'red' // expected value\n" +
+          "        v:'#f00' // expected value\n" +
           "    }\n" +
           "];");
 }
