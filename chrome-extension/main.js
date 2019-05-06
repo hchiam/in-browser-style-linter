@@ -367,7 +367,7 @@ function pointerPreviewOnMouseOver(event) {
             pointerPreview.innerHTML = `Your pointer is hovering over: <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-modal'>${identifier}</strong></div>`;
         } else {
             pointerPreview.style.cssText = 'background: #f4bc42; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
-            pointerPreview.innerHTML = `Your pointer is hovering over: <i class='in-browser-linter-modal' style="color:red">(NOT UNIQUE. Try a different part?)</i> <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-modal'>${identifier}</strong></div>`;
+            pointerPreview.innerHTML = `Your pointer is hovering over: <i class='in-browser-linter-modal' style="color:red">(NOT UNIQUE!) <span style="font-size:0.5rem">Try a different part? Or specify innerHTML.</span></i> <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-modal'>${identifier}</strong></div>`;
         }
     } else {
         pointerPreview.style.cssText = 'text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
