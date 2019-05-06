@@ -9,9 +9,26 @@ chrome.storage.local.get('settings', function getSettings(data) {
   settingsTextarea.value = data.settings ? data.settings.replace(/^\s+|\s+$/g, '') : `// Enter your desired settings here:
 var settings = [
 {
-s:'a', // selector
-p:'color', // property
-v:'red' // expected value
+    s:'a', // selector
+    p:'color', // property
+    v:'red' // expected v
+},
+{
+    s:'a',
+    p:'font-family',
+    v:'avenir',
+    i:'About'
+},
+{
+    s:'a.gb_d',
+    p:'font-family',
+    v:'avenir',
+    c:true
+},
+{
+    s:'.gLFyf.gsfi',
+    p:'color',
+    v:['#eee','rgb(88, 96, 105)','#3e3e3e'],
 },
 ];`;
 });
