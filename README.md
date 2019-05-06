@@ -14,7 +14,7 @@ var settings = [
     {
         selector:'a', // CSS selector
         property:'color', // CSS property to check
-        expectedValues:['#f00','rgb(88, 96, 105)'], // acceptable expected values of property
+        expectedValues:['red','rgb(88, 96, 105)'], // acceptable expected values of property
         // contains:true // OPTIONAL: boolean to say actual value can at least contain the expected value
         // innerHTML:'Some innerHTML text.' // OPTIONAL: you can be more specific than CSS selectors
     }
@@ -71,7 +71,7 @@ var settings = [
     {
         selector:'a', // a CSS selector like 'div span a:hover'
         property:'color', // a CSS property
-        value:'#f00' // the expected value after page render
+        value:'red' // the expected value after page render
     }
 ];
 ```
@@ -83,7 +83,7 @@ var settings = [
     {
         s:'a', // s is for selector
         p:'color', // p is for property
-        v:'#f00' // v (or ev) is for expected value
+        v:'red' // v (or ev) is for expected value
     }
 ];
 ```
@@ -130,7 +130,7 @@ var settings = [
     {
         selector:'a',
         property:'color',
-        value:['#f00', 'rgb(88, 96, 105)']
+        value:['red', 'rgb(88, 96, 105)']
     }
 ];
 ```

@@ -8,11 +8,11 @@ let versionNumber = document.getElementById('version-number');
 chrome.storage.local.get('settings', function getSettings(data) {
   settingsTextarea.value = data.settings ? data.settings.replace(/^\s+|\s+$/g, '') : `// Enter your desired settings here:
 var settings = [
-    {
-        s:'a', // selector
-        p:'color', // property
-        v:'#f00' // expected value
-    }
+{
+s:'a', // selector
+p:'color', // property
+v:'red' // expected value
+},
 ];`;
 });
 
@@ -30,7 +30,7 @@ var settings = [
     {
         s:'a', // selector
         p:'color', // property
-        v:'#f00' // expected value
+        v:'red' // expected value
     }
 ];`);
     settingsTextarea.focus();
