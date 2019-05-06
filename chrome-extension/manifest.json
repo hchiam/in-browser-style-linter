@@ -3,7 +3,6 @@
   "version": "1.4.2",
   "description": "Do quick style checks on your page after it renders, and without leaving your browser.",
   "permissions": [
-    "tabs",
     "activeTab",
     "storage",
     "unlimitedStorage"
