@@ -3,6 +3,7 @@
 let settingsButton = document.getElementById('use-settings');
 let settingsTextarea = document.getElementById('set-settings');
 let clearErrorButtonsButton = document.getElementById('clear-error-buttons');
+let versionNumber = document.getElementById('version-number');
 
 chrome.storage.local.get('settings', function getSettings(data) {
   settingsTextarea.value = data.settings ? data.settings.replace(/^\s+|\s+$/g, '') : `// Enter your desired settings here:
@@ -59,6 +60,8 @@ clearErrorButtonsButton.addEventListener("click", function clearSettings() {
     `
   });
 });
+
+versionNumber.innerHTML = `You're using version <a href="https://github.com/hchiam/in-browser-style-linter/releases" target="_blank">${chrome.runtime.getManifest().version}</a>`;
 
 function validateSettings(settingsString) {
   var lines = settingsString.split('\n');

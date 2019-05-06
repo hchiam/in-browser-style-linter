@@ -158,6 +158,7 @@ function createErrorModal(errors) {
     div.className = 'in-browser-linter-modal';
     div.style.cssText = 'all: initial; position: fixed; left: 25%; top: 25vh; width: 50%; height: 50%; padding: 1rem; z-index: 9999; border: 1rem solid rgba(255, 0, 0, 0.5); background: rgba(255,255,255,0.75); color: black; overflow-y: auto; border-radius: 5px; font-family: avenir, arial, tahoma; box-shadow: inset 0 -50px 50px -55px rgba(0, 0, 0, 1);';
     div.id = 'in-browser-linter-modal';
+    div.title = '(Psst! This window is draggable.)';
     makeElementDraggable(div);
 
     var button = document.createElement("button");
