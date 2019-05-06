@@ -11,7 +11,7 @@ var settings = [
     {
         s:'a', // selector
         p:'color', // property
-        v:'red' // expected value
+        v:'#f00' // expected value
     }
 ];`;
 });
@@ -30,7 +30,7 @@ var settings = [
     {
         s:'a', // selector
         p:'color', // property
-        v:'red' // expected value
+        v:'#f00' // expected value
     }
 ];`);
     settingsTextarea.focus();

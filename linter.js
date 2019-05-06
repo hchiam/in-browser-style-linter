@@ -5,7 +5,7 @@ var settings = [
     {
         s:'a', // selector
         p:'color', // property
-        v:['red','rgb(88, 96, 105)','#eee'], // acceptable expected values
+        v:['#f00','rgb(88, 96, 105)','#eee'], // acceptable expected values
         // c:true, // "contains" (actual value can contain expected value)
         // i:'Some innerHTML text.' // innerHTML
     }
@@ -39,7 +39,7 @@ try {
     "    {\n" +
     "        s:'a', // selector\n" +
     "        p:'color', // property\n" +
-    "        v:'red' // expected value\n" +
+    "        v:'#f00' // expected value\n" +
     "    }\n" +
     "];");
 }

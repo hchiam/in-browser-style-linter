@@ -14,7 +14,7 @@ var settings = [
     {
         selector:'a', // CSS selector
         property:'color', // CSS property to check
-        expectedValues:['red','rgb(88, 96, 105)'], // acceptable expected values of property
+        expectedValues:['#f00','rgb(88, 96, 105)'], // acceptable expected values of property
         // contains:true // OPTIONAL: boolean to say actual value can at least contain the expected value
         // innerHTML:'Some innerHTML text.' // OPTIONAL: you can be more specific than CSS selectors
     }
@@ -71,7 +71,7 @@ var settings = [
     {
         selector:'a', // a CSS selector like 'div span a:hover'
         property:'color', // a CSS property
-        value:'red' // the expected value after page render
+        value:'#f00' // the expected value after page render
     }
 ];
 ```
@@ -83,7 +83,7 @@ var settings = [
     {
         s:'a', // s is for selector
         p:'color', // p is for property
-        v:'red' // v (or ev) is for expected value
+        v:'#f00' // v (or ev) is for expected value
     }
 ];
 ```
@@ -100,8 +100,8 @@ var settings = [
     {
         selector:'a',
         property:'background',
-        value:'lightblue',
-        contains:true // would not flag 'lightblue url("img_tree.gif") no-repeat fixed center' as error
+        value:'#333',
+        contains:true // would not flag '#333 url("img_tree.gif") no-repeat fixed center' as error
     }
 ];
 ```
@@ -113,8 +113,8 @@ var settings = [
     {
         s:'a',
         p:'background',
-        v:'lightblue',
-        c:true // would not flag 'lightblue url("img_tree.gif") no-repeat fixed center' as error
+        v:'#333',
+        c:true // would not flag '#333 url("img_tree.gif") no-repeat fixed center' as error
     }
 ];
 ```
@@ -130,7 +130,7 @@ var settings = [
     {
         selector:'a',
         property:'color',
-        value:['red', 'rgb(88, 96, 105)']
+        value:['#f00', 'rgb(88, 96, 105)']
     }
 ];
 ```
