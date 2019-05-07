@@ -11,7 +11,7 @@ var settings = [
 {
     s:'a', // selector
     p:'color', // property
-    v:'red' // expected v
+    v:'red' // expected value
 },
 {
     s:'a',
