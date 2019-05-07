@@ -70,9 +70,9 @@ clearErrorButtonsButton.addEventListener("click", function clearSettings() {
       while (errorButtons.length>0) {
           errorButtons[0].parentNode.removeChild(errorButtons[0]);
       }
-      var errorModal = document.getElementById('in-browser-linter-modal');
-      if (errorModal) {
-          errorModal.parentNode.removeChild(errorModal);
+      var errorPalette = document.getElementById('in-browser-linter-palette');
+      if (errorPalette) {
+          errorPalette.parentNode.removeChild(errorPalette);
       }
     `
   });

@@ -13,7 +13,7 @@ var settings = [
 
 removeAllErrorButtons();
 deleteLines();
-removeErrorModal();
+removeErrorPalette();
 
 try {
     var errors = [];
@@ -25,7 +25,7 @@ try {
     }
 
     if (errors.length > 0) {
-        createErrorModal(errors);
+        createErrorPalette(errors);
     }
 
     alert('Finished linting. For more info, hover over a button.');
@@ -143,31 +143,31 @@ function removeAllErrorButtons() {
     }
 }
 
-function removeErrorModal() {
-    var errorModal = document.getElementById('in-browser-linter-modal');
-    if (errorModal) {
-        errorModal.parentNode.removeChild(errorModal);
+function removeErrorPalette() {
+    var errorPalette = document.getElementById('in-browser-linter-palette');
+    if (errorPalette) {
+        errorPalette.parentNode.removeChild(errorPalette);
     }
 }
 
 var onHoverStyle = 'all: initial; background: red; padding: 0.5rem; margin: 0.25rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
 var offHoverStyle ='all: initial; background: rgba(255,0,0,0.5); padding: 0.5rem; margin: 0.25rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
 
-function createErrorModal(errors) {
+function createErrorPalette(errors) {
     var div = document.createElement("div");
-    div.className = 'in-browser-linter-modal';
+    div.className = 'in-browser-linter-palette';
     div.style.cssText = 'all: initial; position: fixed; left: 25%; top: 25vh; width: 50%; height: 50%; padding: 1rem; z-index: 9999; border: 1rem solid rgba(255, 0, 0, 0.5); background: rgba(255,255,255,0.75); color: black; overflow-y: auto; border-radius: 5px; font-family: avenir, arial, tahoma; box-shadow: inset 0 -50px 50px -55px rgba(0, 0, 0, 1);';
-    div.id = 'in-browser-linter-modal';
+    div.id = 'in-browser-linter-palette';
     div.title = '(Psst! This window is draggable.)';
     makeElementDraggable(div);
 
     var button = document.createElement("button");
-    button.className = 'in-browser-linter-modal';
+    button.className = 'in-browser-linter-palette';
     button.innerHTML = 'X';
     button.style.cssText = 'all: initial; position: absolute; right: 1rem; background: red; padding: 0.5rem; margin: 0.25rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
     button.title = 'Close';
     button.onclick = function() {
-        removeErrorModal();
+        removeErrorPalette();
     };
     button.onmouseover = function() {
         button.style.cssText = onHoverStyle + 'position: absolute; right: 1rem;';
@@ -178,14 +178,14 @@ function createErrorModal(errors) {
     div.appendChild(button);
 
     var pointerPreview = document.createElement("div");
-    pointerPreview.className = 'in-browser-linter-modal';
-    pointerPreview.id = 'in-browser-linter-modal-pointer-preview'
+    pointerPreview.className = 'in-browser-linter-palette';
+    pointerPreview.id = 'in-browser-linter-palette-pointer-preview'
     pointerPreview.style.cssText = 'text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
-    pointerPreview.innerHTML = '<i class="in-browser-linter-modal">(Hover over an element to preview its identifier.)</i>';
+    pointerPreview.innerHTML = '<i class="in-browser-linter-palette">(Hover over an element to preview its identifier.)</i>';
     div.appendChild(pointerPreview);
 
     var h1 = document.createElement("H1");
-    h1.className = 'in-browser-linter-modal';
+    h1.className = 'in-browser-linter-palette';
     h1.innerHTML = 'Summary of Linter Errors:';
     h1.style.cssText = 'all: initial; font-family: avenir, arial, tahoma; font-weight: bold;';
     div.appendChild(h1);
@@ -199,11 +199,11 @@ function createErrorModal(errors) {
 
 function createErrorPointerEntry(error, container){
     var p = document.createElement("p");
-    p.className = 'in-browser-linter-modal';
+    p.className = 'in-browser-linter-palette';
     p.innerHTML = error.selector + ':<br/>' + error.property + ':<br/>&nbsp;&nbsp;WANT: ' + error.expectedValues.join('<br/>&nbsp;&nbsp;&nbsp;&nbsp;or: ') + '<br/>&nbsp;&nbsp;HAVE: ' + error.actualValue;
     
     var button = document.createElement("button");
-    button.className = 'in-browser-linter-modal';
+    button.className = 'in-browser-linter-palette';
     button.innerHTML = '&rarr; Locate example';
     button.style.cssText = 'all: initial; background: rgba(255,0,0,0.5); padding: 0.5rem; margin: 0.25rem; border-radius: 5px; font-family: avenir, arial, tahoma;';
     button.id = 'pointer-'+ (error.selector + '-' + error.property).replace(/[ .,#$\^&\*;:{}=~()]/g,'_');
@@ -350,15 +350,15 @@ function isIdentifierUnique(identifier) {
 
 document.addEventListener('mouseover', pointerPreviewOnMouseOver, false);
 function pointerPreviewOnMouseOver(event) {
-    var isModalOpen = document.getElementById('in-browser-linter-modal');
-    if (!isModalOpen) {
+    var isPaletteOpen = document.getElementById('in-browser-linter-palette');
+    if (!isPaletteOpen) {
         return;
     }
     var e = event.target;
     var classes = (e.className && e.className !== '') ? '.' + e.className.trim().replace(/ +/g,'.') : '';
-    var isInModal = classes.includes('in-browser-linter-modal');
-    var pointerPreview = document.getElementById('in-browser-linter-modal-pointer-preview');
-    if (!isInModal) {
+    var isInPalette = classes.includes('in-browser-linter-palette');
+    var pointerPreview = document.getElementById('in-browser-linter-palette-pointer-preview');
+    if (!isInPalette) {
         var parentIdentifier = ''
         var identifier = getIdentifier(event);
         var isUnique = isIdentifierUnique(identifier);
@@ -370,14 +370,14 @@ function pointerPreviewOnMouseOver(event) {
         }
         if (isUnique) {
             pointerPreview.style.cssText = 'background: #41f4ca; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
-            pointerPreview.innerHTML = `Your pointer is hovering over: <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-modal'>${identifier}</strong></div>`;
+            pointerPreview.innerHTML = `Your pointer is hovering over: <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
         } else {
             pointerPreview.style.cssText = 'background: #f4bc42; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
-            pointerPreview.innerHTML = `Your pointer is hovering over: <i class='in-browser-linter-modal' style="color:red">(NOT UNIQUE!) <span style="font-size:0.5rem">Try a different part? Or specify innerHTML.</span></i> <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-modal'>${identifier}</strong></div>`;
+            pointerPreview.innerHTML = `Your pointer is hovering over: <i class='in-browser-linter-palette' style="color:red">(NOT UNIQUE!) <span style="font-size:0.5rem">Try a different part? Or specify innerHTML.</span></i> <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
         }
     } else {
         pointerPreview.style.cssText = 'text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
-        pointerPreview.innerHTML = '<i class="in-browser-linter-modal">(Hover over an element to preview its identifier.)</i>';
+        pointerPreview.innerHTML = '<i class="in-browser-linter-palette">(Hover over an element to preview its identifier.)</i>';
     }
 }
 
