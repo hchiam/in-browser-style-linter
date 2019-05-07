@@ -150,13 +150,13 @@ function removeErrorPalette() {
     }
 }
 
-var onHoverStyle = 'all: initial; background: red; padding: 0.5rem; margin: 0.25rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
-var offHoverStyle ='all: initial; background: rgba(255,0,0,0.5); padding: 0.5rem; margin: 0.25rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
+var onHoverStyle = 'all: initial; background: red; padding: 0.5rem; margin: 0.75rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
+var offHoverStyle ='all: initial; background: rgba(255,0,0,0.5); padding: 0.5rem; margin: 0.75rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
 
 function createErrorPalette(errors) {
     var div = document.createElement("div");
     div.className = 'in-browser-linter-palette';
-    div.style.cssText = 'all: initial; position: fixed; left: 25%; top: 25vh; width: 50%; height: 50%; padding: 1rem; z-index: 9999; border: 1rem solid rgba(255, 0, 0, 0.5); background: rgba(255,255,255,0.75); color: black; overflow-y: auto; border-radius: 5px; font-family: avenir, arial, tahoma; box-shadow: inset 0 -50px 50px -55px rgba(0, 0, 0, 1);';
+    div.style.cssText = 'all: initial; position: fixed; left: 25%; top: 25vh; width: 50%; height: 50%; z-index: 9999; border: 1rem solid rgba(255, 0, 0, 0.5); background: rgba(255,255,255,0.75); color: black; overflow-y: auto; border-radius: 5px; font-family: avenir, arial, tahoma; box-shadow: inset 0 -50px 50px -55px rgba(0, 0, 0, 1);';
     div.id = 'in-browser-linter-palette';
     div.title = '(Psst! This window is draggable.)';
     makeElementDraggable(div);
@@ -164,7 +164,7 @@ function createErrorPalette(errors) {
     var button = document.createElement("button");
     button.className = 'in-browser-linter-palette';
     button.innerHTML = 'X';
-    button.style.cssText = 'all: initial; position: absolute; right: 1rem; background: red; padding: 0.5rem; margin: 0.25rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
+    button.style.cssText = 'all: initial; position: absolute; right: 1rem; background: red; padding: 0.5rem; margin: 0.75rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
     button.title = 'Close';
     button.onclick = function() {
         removeErrorPalette();
@@ -180,19 +180,26 @@ function createErrorPalette(errors) {
     var pointerPreview = document.createElement("div");
     pointerPreview.className = 'in-browser-linter-palette';
     pointerPreview.id = 'in-browser-linter-palette-pointer-preview'
-    pointerPreview.style.cssText = 'text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
+    pointerPreview.style.cssText = 'margin: 0.75rem; text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
     pointerPreview.innerHTML = '<i class="in-browser-linter-palette">(Hover over an element to preview its identifier.)</i>';
     div.appendChild(pointerPreview);
 
     var h1 = document.createElement("H1");
     h1.className = 'in-browser-linter-palette';
     h1.innerHTML = 'Summary of Linter Errors:';
-    h1.style.cssText = 'all: initial; font-family: avenir, arial, tahoma; font-weight: bold;';
+    h1.style.cssText = 'all: initial; margin: 0.75rem; font-family: avenir, arial, tahoma; font-weight: bold;';
     div.appendChild(h1);
 
+    var errorContainer = document.createElement("div");
+    errorContainer.className = 'in-browser-linter-palette';
+    errorContainer.id = 'in-browser-linter-error-container';
+    errorContainer.style.cssText = 'float: left; width: 100%; height: 100%; padding: 0.75rem; overflow-y: auto;';
+    
     for (var e=0; e<errors.length; e++) {
-        createErrorPointerEntry(errors[e], div);
+        createErrorPointerEntry(errors[e], errorContainer);
     }
+
+    div.appendChild(errorContainer);
 
     document.body.insertBefore(div, document.body.firstChild);
 }
@@ -256,15 +263,15 @@ function createLine(x1, y1, x2, y2) {
 function createLineElement(x, y, length, angle) {
     var line = document.createElement("div");
     var styles = 'z-index: 9998; background: red; border-radius: 1rem; border: 0.15rem solid white; padding: 0.15rem; '
-                + 'width: ' + length + 'px; '
-                + 'position: absolute; '
-                + 'top: ' + y + 'px; '
-                + 'left: ' + x + 'px; '
-                + '-moz-transform: rotate(' + angle + 'rad); '
-                + '-webkit-transform: rotate(' + angle + 'rad); '
-                + '-o-transform: rotate(' + angle + 'rad); '
-                + '-ms-transform: rotate(' + angle + 'rad); '
-                + 'transform: rotate(' + angle + 'rad); ';
+               + 'width: ' + length + 'px; '
+               + 'position: absolute; '
+               + 'top: ' + y + 'px; '
+               + 'left: ' + x + 'px; '
+               + '-moz-transform: rotate(' + angle + 'rad); '
+               + '-webkit-transform: rotate(' + angle + 'rad); '
+               + '-o-transform: rotate(' + angle + 'rad); '
+               + '-ms-transform: rotate(' + angle + 'rad); '
+               + 'transform: rotate(' + angle + 'rad); ';
     line.setAttribute('style', styles);
     line.className = 'in-browser-linter-pointer';
     return line;
@@ -369,14 +376,14 @@ function pointerPreviewOnMouseOver(event) {
             isUnique = isIdentifierUnique(identifierWithParentPrepended);
         }
         if (isUnique) {
-            pointerPreview.style.cssText = 'background: #41f4ca; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
+            pointerPreview.style.cssText = 'margin: 0.75rem; background: #41f4ca; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
             pointerPreview.innerHTML = `Your pointer is hovering over: <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
         } else {
-            pointerPreview.style.cssText = 'background: #f4bc42; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
+            pointerPreview.style.cssText = 'margin: 0.75rem; background: #f4bc42; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
             pointerPreview.innerHTML = `Your pointer is hovering over: <i class='in-browser-linter-palette' style="color:red">(NOT UNIQUE!) <span style="font-size:0.5rem">Try a different part? Or specify innerHTML.</span></i> <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
         }
     } else {
-        pointerPreview.style.cssText = 'text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 90%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
+        pointerPreview.style.cssText = 'margin: 0.75rem; text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
         pointerPreview.innerHTML = '<i class="in-browser-linter-palette">(Hover over an element to preview its identifier.)</i>';
     }
 }
