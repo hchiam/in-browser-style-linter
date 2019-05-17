@@ -160,10 +160,63 @@ Alternatively:
 ```js
 var settings = [
     {
-        p:'a',
+        s:'a',
         p:'color',
         i:'Some innerHTML text.', // check the color of <a> tags with this innerHTML
         v:'rgb(88, 96, 105)'
+    }
+];
+```
+</details>
+
+<details>
+<summary><strong>Modify Values in One Place</strong></summary>
+
+You can use variables to update properties in one place instead of updating the whole settings array. For example:
+
+```js
+var myColour = 'blue';
+var settings = [
+    {
+        s:'button.btn.btn-info',
+        p:'background',
+        v:myColour
+    },
+    ...
+    {
+        s:'a.some-fancy-button',
+        p:'background',
+        v:myColour
+    },
+    ...
+    {
+        s:'label.consistent-styling-ftw'
+        p:'background',
+        v:myColour
+    }
+];
+```
+
+And avoid situations like this:
+
+```js
+var settings = [
+    {
+        s:'button.btn.btn-info',
+        p:'background',
+        v:'blue'
+    },
+    ...
+    {
+        s:'a.some-fancy-button',
+        p:'background',
+        v:'lightblue' // oops, where else do I have to change this?
+    },
+    ...
+    {
+        s:'label.consistent-styling-ftw'
+        p:'background',
+        v:'blue'
     }
 ];
 ```
