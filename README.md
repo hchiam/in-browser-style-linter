@@ -175,7 +175,7 @@ var settings = [
 You can use variables to update properties in one place instead of updating the whole settings array. For example:
 
 ```js
-var myColour = 'blue';
+var myColour = 'blue'; // you edit the value here, just one place
 var settings = [
     {
         s:'button.btn.btn-info',
@@ -204,19 +204,19 @@ var settings = [
     {
         s:'button.btn.btn-info',
         p:'background',
-        v:'blue'
+        v:'blue' // edit here
     },
     ...
     {
         s:'a.some-fancy-button',
         p:'background',
-        v:'lightblue' // oops, where else do I have to change this?
+        v:'blue' // and here
     },
     ...
     {
         s:'label.consistent-styling-ftw'
         p:'background',
-        v:'blue'
+        v:'lightblue' // oops I forgot, where else do I have to change this?
     }
 ];
 ```
