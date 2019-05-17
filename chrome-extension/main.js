@@ -371,10 +371,10 @@ function pointerPreviewOnMouseOver(event) {
         }
         if (isUnique) {
             pointerPreview.style.cssText = 'margin: 0.75rem; background: #41f4ca; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
-            pointerPreview.innerHTML = `<span style="font-size: 0.9rem;">Your pointer is hovering over: </span><div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
+            pointerPreview.innerHTML = `<span style="font-size: 0.95rem;">Your pointer is hovering over: </span><div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
         } else {
             pointerPreview.style.cssText = 'margin: 0.75rem; background: #f4bc42; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
-            pointerPreview.innerHTML = `<span style="font-size: 0.9rem;">Your pointer is hovering over: </span><i class='in-browser-linter-palette' style="color:red">(NOT UNIQUE!) <span style="font-size:0.5rem">Hover elsewhere? Might need innerHTML.</span></i> <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
+            pointerPreview.innerHTML = `<span style="font-size: 0.95rem;">Your pointer is hovering over: </span><i class='in-browser-linter-palette' style="color:red">(NOT UNIQUE!) <span style="font-size:0.9rem">Hover elsewhere? Might need innerHTML.</span></i> <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
         }
     } else {
         pointerPreview.style.cssText = 'margin: 0.75rem; text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
