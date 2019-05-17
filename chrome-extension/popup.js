@@ -78,7 +78,7 @@ clearErrorButtonsButton.addEventListener("click", function clearSettings() {
   });
 });
 
-versionNumber.innerHTML = `You're using version <a href="https://github.com/hchiam/in-browser-style-linter/releases" target="_blank">${chrome.runtime.getManifest().version}</a>`;
+versionNumber.innerHTML = `You're using version <a href="https://github.com/hchiam/in-browser-style-linter/releases" target="_blank" title="See release notes">${chrome.runtime.getManifest().version}</a>`;
 
 function validateSettings(settingsString) {
   var lines = settingsString.split('\n');
