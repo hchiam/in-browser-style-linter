@@ -222,6 +222,26 @@ var settings = [
 ```
 </details>
 
+# Want to understand how the code works?
+
+## In my mind, the key line of code is this:
+
+```js
+var elements = document.querySelectorAll(selector + ':not(.in-browser-linter-button)');
+```
+
+## If you want more details:
+
+I recommend you start with reading the standalone snippet: https://github.com/hchiam/in-browser-style-linter/blob/master/linter.js
+
+History alert: Pure JavaScript. No jQuery. This was originally just a snippet I'd copy and paste into Chrome DevTools.
+
+## Conceptual data flow in the [chrome-extension](https://github.com/hchiam/in-browser-style-linter/tree/master/chrome-extension) folder:
+
+```js
+manifest.json -> popup.html (the settings popup) -> popup.js -> main.js -> (the summary popup)
+```
+
 # Like this project?
 
 Another Chrome extension in the works: https://github.com/hchiam/in-browser-test-automator
