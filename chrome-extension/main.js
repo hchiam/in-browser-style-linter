@@ -64,6 +64,10 @@ function lint(setting) {
     for (var j=0; j<elements.length; j++) {
         var element = elements[j];
 
+        if (isHidden(element)) {
+            continue; // ignore hidden
+        }
+
         var actualValue = element ? window.getComputedStyle(element, pseudoelement).getPropertyValue(property) : '';
         var matchesActualValue = (expectedValues.indexOf(actualValue) !== -1);
         if (matchesActualValue) {
@@ -95,6 +99,10 @@ function lint(setting) {
         };
     }
     return errorSummary;
+}
+
+function isHidden(element) {
+    return (element.offsetParent === null);
 }
 
 function createErrorButton(selector, property, expectedValues, actualValue) {
