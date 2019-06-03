@@ -7,6 +7,8 @@ Do quick style checks on your page _after_ it renders, and _without leaving your
 
 Or follow this demo: https://youtu.be/eK5jMvivitQ
 
+Side step the worry of whether your style will be overridden, or whether you're accurately testing/simulating the computed styles; make use of the fact that the browser already renders the styles that the user sees.
+
 ## STEP 1: To add a setting, edit [this part](https://github.com/hchiam/in-browser-style-linter/blob/master/linter.js#L3) of the JS code:
 ```js
 // Enter your desired settings here:
