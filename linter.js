@@ -58,7 +58,7 @@ function lint(setting) {
 
     // let user give an array of acceptable values (or just one value string):
     expectedValues = Array.isArray(expectedValues) ? expectedValues : [expectedValues];
-    expectedValues = expectedValues.map(convertColorToRGB);
+    expectedValues = expectedValues.map(convertColorToRGB).map(standardizeSpacesAfterCommas);
 
     var pseudoelement = selector.match(/:(?!.*not)[^ ]+$/);
     pseudoelement = pseudoelement ? pseudoelement[0] : '';
@@ -394,6 +394,10 @@ function pointerPreviewOnMouseOver(event) {
         pointerPreview.style.cssText = 'margin: 0.75rem; text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
         pointerPreview.innerHTML = '<i class="in-browser-linter-palette">(Hover over an element to preview its identifier.)</i>';
     }
+}
+
+function standardizeSpacesAfterCommas(text) {
+    return text.replace(/,(\S)/g, ', $1');
 }
 
 function convertColorToRGB(text) {
