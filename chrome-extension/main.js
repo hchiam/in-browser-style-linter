@@ -87,8 +87,18 @@ function lint(setting) {
             continue; // ignore non-matching innerHTML
         }
 
-        var errorButton = createErrorButton(selector + pseudoelement, property, expectedValues, actualValue)
-        element.appendChild(errorButton);
+        var alreadyHasLinterButton = (element.lastChild && element.lastChild.className == 'in-browser-linter-button');
+        if (alreadyHasLinterButton) {
+            var oldMessage = element.lastChild.childNodes[0].title;
+            var newMessage = oldMessage + '\n\n' + property + ':\n    WANT: ' + expectedValues.join('\n      or: ') + '\n    HAVE: ' + actualValue;
+            element.lastChild.childNodes[0].title = newMessage;
+            element.lastChild.childNodes[0].onclick = function() {
+                alert(newMessage);
+            };
+        } else {
+            var errorButton = createErrorButton(selector + pseudoelement, property, expectedValues, actualValue)
+            element.appendChild(errorButton);
+        }
 
         errorSummary = {
             selector:selector + pseudoelement,
@@ -106,7 +116,7 @@ function isHidden(element) {
 }
 
 function createErrorButton(selector, property, expectedValues, actualValue) {
-    var message = selector + ':\n' + property + ':\n    WANT: ' + expectedValues.join('\n      or: ') + '\n    HAVE: ' + actualValue;
+    var message = selector + ':\n\n' + property + ':\n    WANT: ' + expectedValues.join('\n      or: ') + '\n    HAVE: ' + actualValue;
     var button = document.createElement("BUTTON");
     button.onclick = function() {
         alert(message);
