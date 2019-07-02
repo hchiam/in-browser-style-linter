@@ -246,4 +246,8 @@ manifest.json -> popup.html (the settings popup) -> popup.js -> main.js -> (the 
 
 # Like this project?
 
-Another Chrome extension in the works: https://github.com/hchiam/in-browser-test-automator
+A Chrome extension template repo: [chrome-extension-template](https://github.com/hchiam/chrome-extension-template)
+
+A Chrome extension project I helped tutor and contribute to: [Habit-Tracker-Extension](https://github.com/marko-polo-cheno/Habit-Tracker-Extension)
+
+Another Chrome extension in the works _(update: now old)_: [in-browser-test-automator](https://github.com/hchiam/in-browser-test-automator)
