@@ -250,4 +250,6 @@ A Chrome extension template repo: [chrome-extension-template](https://github.com
 
 A Chrome extension project I helped tutor and contribute to: [Habit-Tracker-Extension](https://github.com/marko-polo-cheno/Habit-Tracker-Extension)
 
+Another Chrome extension in the works: [select-hover-search](https://github.com/hchiam/select-hover-search)
+
 Another Chrome extension in the works _(update: now old)_: [in-browser-test-automator](https://github.com/hchiam/in-browser-test-automator)
