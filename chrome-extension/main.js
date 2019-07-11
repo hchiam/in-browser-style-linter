@@ -18,13 +18,15 @@ try {
         }
     }
 
-    if (errors.length > 0) {
-        createErrorPalette(errors);
+    if (errors.length > 0) { 
+        createErrorPalette(errors); 
+        alert('Finished linting. For more info, hover over a button.'); 
+        console.log('Linter found these errors: (click to expand)'); 
+        console.log(errors);
+    } else {
+        alert('No errors found. :)');
+        console.log('In-browser style linter found no errors. :)');
     }
-
-    alert('Finished linting. For more info, hover over a button.');
-    console.log('Linter found these errors: (click to expand)');
-    console.log(errors);
 } catch (exception) {
     console.log(exception);
     alert("Something went wrong. Make sure your input is something like this: \n" +
