@@ -3,6 +3,7 @@
 let settingsButton = document.getElementById('use-settings');
 let settingsTextarea = document.getElementById('set-settings');
 let clearErrorButtonsButton = document.getElementById('clear-error-buttons');
+let showExampleButton = document.getElementById('show-example');
 let versionNumber = document.getElementById('version-number');
 
 chrome.storage.local.get('settings', function getSettings(data) {
@@ -34,7 +35,12 @@ var settings = [
 });
 
 settingsTextarea.onkeyup = function setSettings() {
-  chrome.storage.local.set({'settings': settingsTextarea.value}, function() {});
+  if (settingsTextarea.value === '') {
+    showExampleButton.style.visibility = 'visible';
+  } else {
+    chrome.storage.local.set({'settings': settingsTextarea.value}, function() {});
+    showExampleButton.style.visibility = 'hidden';
+  }
 };
 
 settingsButton.addEventListener("click", function useSettings() {
