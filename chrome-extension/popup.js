@@ -38,17 +38,13 @@ settingsTextarea.onkeydown = function setSettings(e) {
   let eventObject = window.event ? event : e;
   let hitCtrlOrCmd = (eventObject.ctrlKey || eventObject.metaKey);
   let hitEnter = (eventObject.keyCode == 13);
-  let hitIKey = (eventObject.keyCode == 73);
   if (hitCtrlOrCmd && hitEnter) {
     useSettings();
   }
-  if (hitCtrlOrCmd && hitIKey) {
-    // alert('"Ctrl+i"');
-  }
+
   if (settingsTextarea.value === '') {
     showExampleButton.style.visibility = 'visible';
     settingsTextarea.title = 'Enter your desired settings here';
-
   } else {
     chrome.storage.local.set({'settings': settingsTextarea.value}, function() {});
     showExampleButton.style.visibility = 'hidden';

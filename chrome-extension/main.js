@@ -181,6 +181,8 @@ function createErrorPalette(errors) {
     button.style.cssText = 'all: initial; position: absolute; right: 1rem; background: red; padding: 0.5rem; margin: 0.75rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;';
     button.title = 'Close';
     button.onclick = function() {
+        document.removeEventListener('mouseover', pointerPreviewOnMouseOver);
+        document.removeEventListener('keydown', getPointerPreviewIdentifier);
         removeErrorPalette();
         removeAllErrorButtons();
     };
@@ -370,7 +372,7 @@ function isIdentifierUnique(identifier) {
     return (typeof document.querySelectorAll(identifier)[1]) === 'undefined'; // index 1 should not exist
 }
 
-document.addEventListener('mouseover', pointerPreviewOnMouseOver, false);
+document.addEventListener('mouseover', pointerPreviewOnMouseOver);
 function pointerPreviewOnMouseOver(event) {
     var isPaletteOpen = document.getElementById('in-browser-linter-palette');
     if (!isPaletteOpen) {
@@ -392,14 +394,48 @@ function pointerPreviewOnMouseOver(event) {
         }
         if (isUnique) {
             pointerPreview.style.cssText = 'margin: 0.75rem; background: #41f4ca; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
-            pointerPreview.innerHTML = `<span style="font-size: 0.95rem;">Your pointer is hovering over: </span><div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
+            pointerPreview.innerHTML = `<span style="font-size: 0.95rem;">Your pointer is hovering over: </span><i class='in-browser-linter-palette' style="color:#36d1af"><span style="font-size:0.9rem">Hit Ctrl+i (or Cmd+i) to copy to clipboard:</span></i><div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
+            pointerPreview.title = (parentIdentifier ? parentIdentifier + '>' : '') + identifier;
         } else {
             pointerPreview.style.cssText = 'margin: 0.75rem; background: #f4bc42; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
             pointerPreview.innerHTML = `<span style="font-size: 0.95rem;">Your pointer is hovering over: </span><i class='in-browser-linter-palette' style="color:red">(NOT UNIQUE!) <span style="font-size:0.9rem">Hover elsewhere? Might need innerHTML.</span></i> <div style="padding-left:0.5rem">${parentIdentifier ? parentIdentifier + '>' : ''}<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
+            pointerPreview.title = (parentIdentifier ? parentIdentifier + '>' : '') + identifier;
         }
     } else {
         pointerPreview.style.cssText = 'margin: 0.75rem; text-align: center; line-height: 3rem; background: white; color: grey; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ';
         pointerPreview.innerHTML = '<i class="in-browser-linter-palette">(Hover over an element to preview its identifier.)</i>';
+        pointerPreview.title = '';
+    }
+}
+
+document.addEventListener('keydown', getPointerPreviewIdentifier);
+function getPointerPreviewIdentifier(e) {
+    let eventObject = window.event ? event : e;
+    let hitCtrlOrCmd = (eventObject.ctrlKey || eventObject.metaKey);
+    let hitIKey = (eventObject.keyCode == 73);
+    if (hitCtrlOrCmd && hitIKey) {
+        let pointerPreviewTitle = copyPointerPreviewToClipboard();
+        if (pointerPreviewTitle) {
+            alert(`Copied to clipboard: \n\n${pointerPreviewTitle}`);
+        }
+    }
+}
+
+function copyPointerPreviewToClipboard() {
+    let pointerPreview = document.getElementById('in-browser-linter-palette-pointer-preview');
+    if (pointerPreview && pointerPreview.title) {
+        let container = document.createElement('div')
+        container.innerHTML = pointerPreview.title
+        container.style.position = 'fixed'
+        container.style.pointerEvents = 'none'
+        container.style.opacity = 0
+        document.body.appendChild(container)
+        window.getSelection().removeAllRanges()
+        let range = document.createRange()
+        range.selectNode(container)
+        window.getSelection().addRange(range)
+        document.execCommand('copy');
+        return pointerPreview.title;
     }
 }
 
