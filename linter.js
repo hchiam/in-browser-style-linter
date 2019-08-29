@@ -188,6 +188,7 @@ function createErrorPalette(errors) {
     button.title = 'Close';
     button.onclick = function() {
         removeErrorPalette();
+        removeAllErrorButtons();
     };
     button.onmouseover = function() {
         button.style.cssText = onHoverStyle + 'position: absolute; right: 1rem;';

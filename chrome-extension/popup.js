@@ -34,16 +34,48 @@ var settings = [
 ];`;
 });
 
-settingsTextarea.onkeyup = function setSettings() {
+settingsTextarea.onkeydown = function setSettings(e) {
+  let eventObject = window.event ? event : e;
+  let hitCtrlOrCmd = (eventObject.ctrlKey || eventObject.metaKey);
+  let hitEnter = (eventObject.keyCode == 13);
+  let hitIKey = (eventObject.keyCode == 73);
+  if (hitCtrlOrCmd && hitEnter) {
+    useSettings();
+  }
+  if (hitCtrlOrCmd && hitIKey) {
+    // alert('"Ctrl+i"');
+  }
   if (settingsTextarea.value === '') {
     showExampleButton.style.visibility = 'visible';
+    settingsTextarea.title = 'Enter your desired settings here';
+
   } else {
     chrome.storage.local.set({'settings': settingsTextarea.value}, function() {});
     showExampleButton.style.visibility = 'hidden';
+    settingsTextarea.title = 'To run, hit Ctrl+Enter (or Cmd+Return)';
   }
 };
 
-settingsButton.addEventListener("click", function useSettings() {
+settingsButton.addEventListener("click", useSettings);
+
+clearErrorButtonsButton.addEventListener("click", function clearSettings() {
+  chrome.tabs.executeScript(null, {
+    code: `
+      var errorButtons = document.getElementsByClassName('in-browser-linter-button');
+      while (errorButtons.length>0) {
+          errorButtons[0].parentNode.removeChild(errorButtons[0]);
+      }
+      var errorPalette = document.getElementById('in-browser-linter-palette');
+      if (errorPalette) {
+          errorPalette.parentNode.removeChild(errorPalette);
+      }
+    `
+  });
+});
+
+versionNumber.innerHTML = `You're using version <a href="https://github.com/hchiam/in-browser-style-linter/releases" target="_blank" title="See release notes">${chrome.runtime.getManifest().version}</a>`;
+
+function useSettings() {
   settingsTextarea.value = settingsTextarea.value.replace(/^\s+|\s+$/g, '');
   var isValidSettingsInput = validateSettings(settingsTextarea.value)
   if (!isValidSettingsInput) {
@@ -67,24 +99,7 @@ var settings = [
     chrome.tabs.executeScript(null, {file: 'main.js'});
     window.close();
   });
-});
-
-clearErrorButtonsButton.addEventListener("click", function clearSettings() {
-  chrome.tabs.executeScript(null, {
-    code: `
-      var errorButtons = document.getElementsByClassName('in-browser-linter-button');
-      while (errorButtons.length>0) {
-          errorButtons[0].parentNode.removeChild(errorButtons[0]);
-      }
-      var errorPalette = document.getElementById('in-browser-linter-palette');
-      if (errorPalette) {
-          errorPalette.parentNode.removeChild(errorPalette);
-      }
-    `
-  });
-});
-
-versionNumber.innerHTML = `You're using version <a href="https://github.com/hchiam/in-browser-style-linter/releases" target="_blank" title="See release notes">${chrome.runtime.getManifest().version}</a>`;
+}
 
 function validateSettings(settingsString) {
   var lines = settingsString.split('\n');
