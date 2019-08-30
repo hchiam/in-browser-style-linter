@@ -1,8 +1,11 @@
+var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventListenersSafely to work!
+
 (function() {
 
 removeAllErrorButtons();
 deleteLines();
 removeErrorPalette();
+addEventListenersSafely();
 
 // because used within chrome popup, avoid fatal error if no settings:
 if (typeof settings === 'undefined' || settings === null) {
@@ -372,7 +375,6 @@ function isIdentifierUnique(identifier) {
     return (typeof document.querySelectorAll(identifier)[1]) === 'undefined'; // index 1 should not exist
 }
 
-document.addEventListener('mouseover', pointerPreviewOnMouseOver);
 function pointerPreviewOnMouseOver(event) {
     var isPaletteOpen = document.getElementById('in-browser-linter-palette');
     if (!isPaletteOpen) {
@@ -408,7 +410,16 @@ function pointerPreviewOnMouseOver(event) {
     }
 }
 
-document.addEventListener('keydown', getPointerPreviewIdentifier);
+function addEventListenersSafely() { // removeEventListener does not seem to work
+    if (alreadyAddedEventListeners === undefined) {
+        document.addEventListener('mouseover', pointerPreviewOnMouseOver);
+        document.addEventListener('keydown', getPointerPreviewIdentifier);
+        alreadyAddedEventListeners = true;
+    } else {
+        // do nothing
+    }
+}
+
 function getPointerPreviewIdentifier(e) {
     let eventObject = window.event ? event : e;
     let hitCtrlOrCmd = (eventObject.ctrlKey || eventObject.metaKey);
