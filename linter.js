@@ -1,3 +1,5 @@
+var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventListenersSafely to work!
+
 (function() {
 
 // Enter your desired settings here:
@@ -14,6 +16,7 @@ var settings = [
 removeAllErrorButtons();
 deleteLines();
 removeErrorPalette();
+addEventListenersSafely();
 
 try {
     var errors = [];
@@ -356,29 +359,16 @@ function makeElementDraggable(element) {
     }
 }
 
-function getIdentifier(event) {
-    var e = event.target || event;
-    var tag = (e.tagName) ? e.tagName.trim().toLowerCase() : '';
-    var id = (e.id) ? '#' + e.id.trim() : '';
-    var classes = (e.className && e.className !== '') ? '.' + e.className.trim().replace(/ +/g,'.') : '';
-    var identifier = tag + id + classes;
-    return identifier;
+function addEventListenersSafely() { // removeEventListener does not seem to work
+    if (alreadyAddedEventListeners === undefined) {
+        document.addEventListener('mouseover', pointerPreviewOnMouseOver);
+document.addEventListener('keydown', getPointerPreviewIdentifier);
+alreadyAddedEventListeners = true;
+} else {
+    // do nothing
+}
 }
 
-function getParentIdentifier(event) {
-    var e = event.parentElement || event.target.parentElement;
-    var tag = (e.tagName) ? e.tagName.trim().toLowerCase() : '';
-    var id = (e.id) ? '#' + e.id.trim() : '';
-    var classes = (e.className) ? '.' + e.className.trim().replace(/ /g,'.') : '';
-    var identifier = tag + id + classes;
-    return identifier;
-}
-
-function isIdentifierUnique(identifier) {
-    return (typeof document.querySelectorAll(identifier)[1]) === 'undefined'; // index 1 should not exist
-}
-
-document.addEventListener('mouseover', pointerPreviewOnMouseOver);
 function pointerPreviewOnMouseOver(event) {
     var isPaletteOpen = document.getElementById('in-browser-linter-palette');
     if (!isPaletteOpen) {
@@ -414,7 +404,28 @@ function pointerPreviewOnMouseOver(event) {
     }
 }
 
-document.addEventListener('keydown', getPointerPreviewIdentifier);
+function getIdentifier(event) {
+    var e = event.target || event;
+    var tag = (e.tagName) ? e.tagName.trim().toLowerCase() : '';
+    var id = (e.id) ? '#' + e.id.trim() : '';
+    var classes = (e.className && e.className !== '') ? '.' + e.className.trim().replace(/ +/g,'.') : '';
+    var identifier = tag + id + classes;
+    return identifier;
+}
+
+function isIdentifierUnique(identifier) {
+    return (typeof document.querySelectorAll(identifier)[1]) === 'undefined'; // index 1 should not exist
+}
+
+function getParentIdentifier(event) {
+    var e = event.parentElement || event.target.parentElement;
+    var tag = (e.tagName) ? e.tagName.trim().toLowerCase() : '';
+    var id = (e.id) ? '#' + e.id.trim() : '';
+    var classes = (e.className) ? '.' + e.className.trim().replace(/ /g,'.') : '';
+    var identifier = tag + id + classes;
+    return identifier;
+}
+
 function getPointerPreviewIdentifier(e) {
     let eventObject = window.event ? event : e;
     let hitCtrlOrCmd = (eventObject.ctrlKey || eventObject.metaKey);
