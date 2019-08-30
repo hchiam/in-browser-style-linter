@@ -362,11 +362,11 @@ function makeElementDraggable(element) {
 function addEventListenersSafely() { // removeEventListener does not seem to work
     if (alreadyAddedEventListeners === undefined) {
         document.addEventListener('mouseover', pointerPreviewOnMouseOver);
-document.addEventListener('keydown', getPointerPreviewIdentifier);
-alreadyAddedEventListeners = true;
-} else {
-    // do nothing
-}
+        document.addEventListener('keydown', getPointerPreviewIdentifier);
+        alreadyAddedEventListeners = true;
+    } else {
+        // do nothing
+    }
 }
 
 function pointerPreviewOnMouseOver(event) {
