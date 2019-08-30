@@ -1,5 +1,5 @@
 # in-browser-style-linter
-Do quick style checks on your page _after_ it renders, and _without leaving your browser_: 
+Do quick style checks on your page _after_ it renders, _without leaving your browser_, and with minimal friction to setup (important for adoption): 
 
 1. Add settings. 
 2. Run in-browser. [(Chrome/Firefox/IE)](https://github.com/hchiam/in-browser-style-linter#step-2-set-up-your-browser-to-run-the-js-code)
