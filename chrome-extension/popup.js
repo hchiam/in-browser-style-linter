@@ -3,7 +3,7 @@
 let settingsButton = document.getElementById('use-settings');
 let settingsTextarea = document.getElementById('set-settings');
 let clearErrorButtonsButton = document.getElementById('clear-error-buttons');
-let showExampleButton = document.getElementById('show-example');
+let showInstructionButton = document.getElementById('show-instruction');
 let versionNumber = document.getElementById('version-number');
 
 chrome.storage.local.get('settings', function getSettings(data) {
@@ -43,13 +43,14 @@ settingsTextarea.onkeydown = function setSettings(e) {
   }
 
   if (settingsTextarea.value === '') {
-    showExampleButton.style.visibility = 'visible';
+    showInstructionButton.style.visibility = 'hidden';
     settingsTextarea.title = 'Enter your desired settings here';
   } else {
-    chrome.storage.local.set({'settings': settingsTextarea.value}, function() {});
-    showExampleButton.style.visibility = 'hidden';
+    showInstructionButton.style.visibility = 'visible';
     settingsTextarea.title = 'To run, hit Ctrl+Enter (or Cmd+Return)';
   }
+  
+  chrome.storage.local.set({'settings': settingsTextarea.value}, function() {});
 };
 
 settingsButton.addEventListener("click", useSettings);
