@@ -95,7 +95,7 @@ var settings = [
 <details>
 <summary><strong>c is for Contains Value</strong></summary>
 
-To relax the matching of the property value to simply "contain" the expected value, set the optional parameter to true:
+To relax the matching of the property value to simply "contain" the expected value, set the optional **contains** parameter to true:
 
 ```js
 var settings = [
@@ -108,7 +108,7 @@ var settings = [
 ];
 ```
 
-Alternatively:
+All parameters have short forms to let you save on keystrokes. Here's an equivalent to the example above:
 
 ```js
 var settings = [
@@ -157,7 +157,7 @@ var settings = [
 ];
 ```
 
-Alternatively:
+All parameters have short forms to let you save on keystrokes. Here's an equivalent to the example above:
 
 ```js
 var settings = [
@@ -178,6 +178,7 @@ You can use variables to update properties in one place instead of updating the 
 
 ```js
 var myColour = 'blue'; // you edit the value here, just one place
+
 var settings = [
     {
         s:'button.btn.btn-info',
