@@ -252,10 +252,16 @@ manifest.json -> popup.html (the settings popup) -> popup.js -> main.js -> (the 
 
 A Chrome extension template repo: [chrome-extension-template](https://github.com/hchiam/chrome-extension-template)
 
+## Other Chrome extensions:
+
 A Chrome extension project I helped tutor and contribute to: [Habit-Tracker-Extension](https://github.com/marko-polo-cheno/Habit-Tracker-Extension)
 
 A tool to quickly search links and menus (even if collapsed): [quick-menu-search](https://github.com/hchiam/quick-menu-search)
 
-Another Chrome extension in the works: [select-hover-search](https://github.com/hchiam/select-hover-search)
+Another Chrome extension (_note:_ very experimental): [select-hover-search](https://github.com/hchiam/select-hover-search)
 
-Another Chrome extension in the works _(update: now old)_: [in-browser-test-automator](https://github.com/hchiam/in-browser-test-automator)
+Another Chrome extension (_note:_ very experimental): [in-browser-test-automator](https://github.com/hchiam/in-browser-test-automator)
+
+## A Firefox add-on:
+
+[Check All Scripts with URLVoid](https://github.com/hchiam/urlvoid-firefox-extension)
