@@ -1,6 +1,6 @@
 # in-browser-style-linter
 
-[![HitCount](http://hits.dwyl.com/hchiam/in-browser-style-linter.svg)](http://hits.dwyl.com/hchiam/in-browser-style-linter)
+![version](https://img.shields.io/github/release/hchiam/in-browser-style-linter) [![HitCount](http://hits.dwyl.com/hchiam/in-browser-style-linter.svg)](http://hits.dwyl.com/hchiam/in-browser-style-linter)
 
 Do quick style checks on your page _after_ it renders, _without leaving your browser_, and with minimal friction to setup (important for adoption): 
 
