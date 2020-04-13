@@ -262,6 +262,8 @@ Another Chrome extension (_note:_ very experimental): [select-hover-search](http
 
 Another Chrome extension (_note:_ very experimental): [in-browser-test-automator](https://github.com/hchiam/in-browser-test-automator)
 
-## A Firefox add-on:
+## Firefox add-ons:
+
+[Console Log Element](https://addons.mozilla.org/en-US/firefox/addon/console-log-element)
 
 [Check All Scripts with URLVoid](https://github.com/hchiam/urlvoid-firefox-extension)
