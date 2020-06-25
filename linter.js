@@ -239,8 +239,6 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
       "all: initial; position: absolute; right: 1rem; background: red; padding: 0.5rem; margin: 0.75rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;";
     button.title = "Close";
     button.onclick = function () {
-      document.removeEventListener("mouseover", pointerPreviewOnMouseOver);
-      document.removeEventListener("keydown", getPointerPreviewIdentifier);
       removeErrorPalette();
       removeAllErrorButtons();
     };
