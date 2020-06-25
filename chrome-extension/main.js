@@ -567,7 +567,13 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
     );
     if (pointerPreview && pointerPreview.title) {
       let container = document.createElement("div");
-      container.innerHTML = pointerPreview.title;
+      container.innerHTML = `{
+    selector: '${pointerPreview.title}',
+    property: '',
+    expectedValues: [''],
+    /* contains: true, */
+    /* innerHTML: '' */
+},`;
       container.style.position = "fixed";
       container.style.pointerEvents = "none";
       container.style.opacity = 0;
@@ -577,7 +583,7 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
       range.selectNode(container);
       window.getSelection().addRange(range);
       document.execCommand("copy");
-      return pointerPreview.title;
+      return container.innerHTML;
     }
   }
 
