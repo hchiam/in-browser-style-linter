@@ -1,6 +1,6 @@
 {
   "name": "In-Browser Style Linter",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Do quick style checks on your page after it renders, without leaving your browser, and with minimal friction to setup.",
   "permissions": ["activeTab", "storage", "unlimitedStorage"],
   "browser_action": {
