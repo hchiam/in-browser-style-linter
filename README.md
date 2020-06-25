@@ -2,9 +2,9 @@
 
 ![version](https://img.shields.io/github/release/hchiam/in-browser-style-linter) [![HitCount](http://hits.dwyl.com/hchiam/in-browser-style-linter.svg)](http://hits.dwyl.com/hchiam/in-browser-style-linter) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Do quick style checks on your page _after_ it renders, _without leaving your browser_, and with minimal friction to setup (important for adoption): 
+Do quick style checks on your page _after_ it renders, _without leaving your browser_, and with minimal friction to setup (important for adoption):
 
-1. Add settings. 
+1. Add settings.
 2. Run in-browser. [(Chrome/Firefox/IE)](https://github.com/hchiam/in-browser-style-linter#step-2-set-up-your-browser-to-run-the-js-code)
 3. See red buttons.
 
@@ -13,56 +13,59 @@ Or follow this demo: https://youtu.be/eK5jMvivitQ
 Side step the worry of whether your style will be overridden, or whether you're accurately testing/simulating the computed styles; make use of the fact that the browser already renders the styles that the user sees.
 
 ## STEP 1: To add a setting, edit [this part](https://github.com/hchiam/in-browser-style-linter/blob/master/linter.js#L3) of the JS code:
+
 ```js
 // Enter your desired settings here:
 var settings = [
-    {
-        selector:'a', // CSS selector
-        property:'color', // CSS property to check
-        expectedValues:['red','rgb(88, 96, 105)'], // acceptable expected values of property
-        // contains:true // OPTIONAL: boolean to say actual value can at least contain the expected value
-        // innerHTML:'Some innerHTML text.' // OPTIONAL: you can be more specific than CSS selectors
-    }
+  {
+    selector: "a", // CSS selector
+    property: "color", // CSS property to check
+    expectedValues: ["red", "rgb(88, 96, 105)"], // acceptable expected values of property
+    // contains:true // OPTIONAL: boolean to say actual value can at least contain the expected value
+    // innerHTML:'Some innerHTML text.' // OPTIONAL: you can be more specific than CSS selectors
+  },
 ];
 ```
+
 to something like this (try it on https://www.google.com):
+
 ```js
 // Enter your desired settings here:
 var settings = [
-{
-    s:'a',
-    p:'font-family',
-    v:'avenir',
-    i:'About'
-},
-{
-    s:'a.gb_d',
-    p:'font-family',
-    v:'avenir',
-    c:true
-},
-{
-    s:'.gLFyf.gsfi',
-    p:'color',
-    v:['#eee','rgb(88, 96, 105)','#3e3e3e'],
-},
+  {
+    s: "a",
+    p: "font-family",
+    v: "avenir",
+    i: "About",
+  },
+  {
+    s: "a.gb_d",
+    p: "font-family",
+    v: "avenir",
+    c: true,
+  },
+  {
+    s: ".gLFyf.gsfi",
+    p: "color",
+    v: ["#eee", "rgb(88, 96, 105)", "#3e3e3e"],
+  },
 ];
 ```
 
 (For details, see [more info](https://github.com/hchiam/in-browser-style-linter#more-info-click-to-expand).)
 
 ## STEP 2: Set up your browser to run the JS code:
-* Chrome extension: [In-Browser Style Linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
-* Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
-* Firefox: [console in Multi-line mode](https://developer.mozilla.org/en-US/docs/Tools/Web_Console/The_command_line_interpreter#Multi-line_mode)
-* Internet Explorer: F12 > Console > paste the whole code into the terminal (paste after the ">" symbol on the bottom) > Ctrl+Enter (or hit run)
+
+- Chrome extension: [In-Browser Style Linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
+- Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
+- Firefox: [console in Multi-line mode](https://developer.mozilla.org/en-US/docs/Tools/Web_Console/The_command_line_interpreter#Multi-line_mode)
+- Internet Explorer: F12 > Console > paste the whole code into the terminal (paste after the ">" symbol on the bottom) > Ctrl+Enter (or hit run)
 
 ## STEP 3: You'll see ugly red buttons, like this:
 
 ![image](https://github.com/hchiam/in-browser-style-linter/blob/master/example-screenshot.png)
 
 Hovering over the error button shows the expected and actual values. See this demo: https://youtu.be/eK5jMvivitQ
-
 
 # More info: (click to expand)
 
@@ -73,11 +76,11 @@ Minimal required info:
 
 ```js
 var settings = [
-    {
-        selector:'a', // a CSS selector like 'div span a:hover'
-        property:'color', // a CSS property
-        value:'red' // the expected value after page render
-    }
+  {
+    selector: "a", // a CSS selector like 'div span a:hover'
+    property: "color", // a CSS property
+    value: "red", // the expected value after page render
+  },
 ];
 ```
 
@@ -85,11 +88,11 @@ All parameters have short forms to let you save on keystrokes. Here's an equival
 
 ```js
 var settings = [
-    {
-        s:'a', // s is for selector
-        p:'color', // p is for property
-        v:'red' // v (or ev) is for expected value
-    }
+  {
+    s: "a", // s is for selector
+    p: "color", // p is for property
+    v: "red", // v (or ev) is for expected value
+  },
 ];
 ```
 
@@ -102,12 +105,12 @@ To relax the matching of the property value to simply "contain" the expected val
 
 ```js
 var settings = [
-    {
-        selector:'a',
-        property:'background',
-        value:'#333',
-        contains:true // would not flag '#333 url("img_tree.gif") no-repeat fixed center' as error
-    }
+  {
+    selector: "a",
+    property: "background",
+    value: "#333",
+    contains: true, // would not flag '#333 url("img_tree.gif") no-repeat fixed center' as error
+  },
 ];
 ```
 
@@ -115,14 +118,15 @@ All parameters have short forms to let you save on keystrokes. Here's an equival
 
 ```js
 var settings = [
-    {
-        s:'a',
-        p:'background',
-        v:'#333',
-        c:true // would not flag '#333 url("img_tree.gif") no-repeat fixed center' as error
-    }
+  {
+    s: "a",
+    p: "background",
+    v: "#333",
+    c: true, // would not flag '#333 url("img_tree.gif") no-repeat fixed center' as error
+  },
 ];
 ```
+
 </details>
 
 <details>
@@ -132,11 +136,11 @@ To specify several allowable expected values, use an array:
 
 ```js
 var settings = [
-    {
-        selector:'a',
-        property:'color',
-        value:['red', 'rgb(88, 96, 105)']
-    }
+  {
+    selector: "a",
+    property: "color",
+    value: ["red", "rgb(88, 96, 105)"],
+  },
 ];
 ```
 
@@ -151,12 +155,12 @@ To specify elements that have a specific innerHTML (in addition to the CSS selec
 
 ```js
 var settings = [
-    {
-        selector:'a',
-        property:'color',
-        innerHTML:'Some innerHTML text.', // check the color of <a> tags with this innerHTML
-        value:'rgb(88, 96, 105)'
-    }
+  {
+    selector: "a",
+    property: "color",
+    innerHTML: "Some innerHTML text.", // check the color of <a> tags with this innerHTML
+    value: "rgb(88, 96, 105)",
+  },
 ];
 ```
 
@@ -164,14 +168,15 @@ All parameters have short forms to let you save on keystrokes. Here's an equival
 
 ```js
 var settings = [
-    {
-        s:'a',
-        p:'color',
-        i:'Some innerHTML text.', // check the color of <a> tags with this innerHTML
-        v:'rgb(88, 96, 105)'
-    }
+  {
+    s: "a",
+    p: "color",
+    i: "Some innerHTML text.", // check the color of <a> tags with this innerHTML
+    v: "rgb(88, 96, 105)",
+  },
 ];
 ```
+
 </details>
 
 <details>
@@ -226,6 +231,7 @@ var settings = [
     }
 ];
 ```
+
 </details>
 
 # Want to understand how the code works?
@@ -233,7 +239,9 @@ var settings = [
 ## In my mind, the key line of code is this:
 
 ```js
-var elements = document.querySelectorAll(selector + ':not(.in-browser-linter-button)');
+var elements = document.querySelectorAll(
+  selector + ":not(.in-browser-linter-button)"
+);
 ```
 
 ## If you want more details:

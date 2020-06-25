@@ -1,72 +1,75 @@
 * {
-    background: rgb(32,32,32);
-    color: whitesmoke;
-    font-family: avenir, arial;
-    transition: 0.5s;
+  background: rgb(32, 32, 32);
+  color: whitesmoke;
+  font-family: avenir, arial;
+  transition: 0.5s;
 }
 
 html {
-    width: 600px;
+  width: 600px;
 }
 
 body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 div {
-    padding: 10px;
-    margin: 10px;
+  padding: 10px;
+  margin: 10px;
 }
 
 button,
 input,
 textarea {
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #eee;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #eee;
 }
 
 button:hover,
 input:hover,
 textarea:hover {
-    background: rgb(20, 31, 43);
-    color: white;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(90,90,90,0.25), 0 10px 10px rgba(90,90,90,0.22);
+  background: rgb(20, 31, 43);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(90, 90, 90, 0.25),
+    0 10px 10px rgba(90, 90, 90, 0.22);
 }
 
 button:hover,
 input:hover {
-    background: rgb(18, 64, 112);
-    border-radius: 0.5rem;
+  background: rgb(18, 64, 112);
+  border-radius: 0.5rem;
 }
 
 button#clear-error-buttons:hover {
-    background: rgb(80, 15, 15);
+  background: rgb(80, 15, 15);
 }
 
 button#use-settings:hover {
-    background: rgb(15, 80, 50);
+  background: rgb(15, 80, 50);
 }
 
 textarea {
-    resize: vertical;
-    caret-color: lime;
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-    white-space: pre;
+  resize: vertical;
+  caret-color: lime;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
+    monospace;
+  white-space: pre;
 }
 
 textarea:hover {
-    border-radius: 0.5rem 0.5rem 0 0.5rem;
+  border-radius: 0.5rem 0.5rem 0 0.5rem;
 }
 
 a:hover {
-    color: lime;
-    box-shadow: 0 14px 28px rgba(90,90,90,0.25), 0 10px 10px rgba(90,90,90,0.22);
+  color: lime;
+  box-shadow: 0 14px 28px rgba(90, 90, 90, 0.25),
+    0 10px 10px rgba(90, 90, 90, 0.22);
 }
 
 #show-instruction {
-    padding: 10px;
+  padding: 10px;
 }

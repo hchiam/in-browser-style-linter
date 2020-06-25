@@ -2,17 +2,22 @@
 <html>
   <head>
     <title>In-Browser Style Linter Popup</title>
-    <link rel="stylesheet" type="text/css" href="popup.css">
+    <link rel="stylesheet" type="text/css" href="popup.css" />
   </head>
   <body>
-    <button id="clear-error-buttons" title="Remove any '!' buttons">Clear error buttons</button>
+    <button id="clear-error-buttons" title="Remove any '!' buttons">
+      Clear error buttons
+    </button>
     <p id="show-instruction" style="visibility: hidden;">
       <i>Tip: to run, you can hit Ctrl+Enter (or Cmd+Return)</i>
     </p>
     <button id="use-settings" title="Run linter">Use settings</button>
-    <textarea id="set-settings" cols="80" rows="20" 
-        title="Enter your desired settings here"
-        placeholder="// Enter your desired settings here:
+    <textarea
+      id="set-settings"
+      cols="80"
+      rows="20"
+      title="Enter your desired settings here"
+      placeholder="// Enter your desired settings here:
 var settings = [
 {
     s:'a', // selector
@@ -36,8 +41,18 @@ var settings = [
     p:'color',
     v:['#eee','rgb(88, 96, 105)','#3e3e3e'],
 },
-];"></textarea>
-    <div>More info: <a role="button" href="https://github.com/hchiam/in-browser-style-linter" target="_blank" title="https://github.com/hchiam/in-browser-style-linter">here</a></div>
+];"
+    ></textarea>
+    <div>
+      More info:
+      <a
+        role="button"
+        href="https://github.com/hchiam/in-browser-style-linter"
+        target="_blank"
+        title="https://github.com/hchiam/in-browser-style-linter"
+        >here</a
+      >
+    </div>
     <div id="version-number" role="button"></div>
     <script src="popup.js"></script>
   </body>
