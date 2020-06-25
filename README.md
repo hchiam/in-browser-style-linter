@@ -1,4 +1,4 @@
-# in-browser-style-linter
+# [in-browser-style-linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
 
 ![version](https://img.shields.io/github/release/hchiam/in-browser-style-linter) [![HitCount](http://hits.dwyl.com/hchiam/in-browser-style-linter.svg)](http://hits.dwyl.com/hchiam/in-browser-style-linter) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
