@@ -250,7 +250,7 @@ I recommend you start with reading the standalone snippet: <https://github.com/h
 
 History alert: Pure JavaScript. No jQuery. This was originally just a snippet I'd copy and paste into Chrome DevTools.
 
-## Conceptual data flow in the [chrome-extension](https://github.com/hchiam/in-browser-style-linter/tree/master/chrome-extension) folder:
+## Conceptual data flow in the [extension-folder](https://github.com/hchiam/in-browser-style-linter/tree/master/extension-folder) folder:
 
 ```js
 manifest.json -> popup.html (the settings popup) -> popup.js -> main.js -> (the summary popup)
