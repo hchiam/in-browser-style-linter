@@ -173,7 +173,7 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
     button.onclick = function () {
       alert(message);
     };
-    button.innerHTML = "!";
+    button.innerText = "!";
     button.style.cssText =
       "all: initial; position: absolute; top: -0.5rem; right: -1rem; background: red; border-radius: 1rem; border: 0.15rem solid white; height: 1.5rem; width: 1.5rem; font-size: 1rem; text-align: center;";
     button.title = message;
@@ -234,7 +234,7 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
 
     var button = document.createElement("button");
     button.className = "in-browser-linter-palette";
-    button.innerHTML = "X";
+    button.innerText = "X";
     button.style.cssText =
       "all: initial; position: absolute; right: 1rem; background: red; padding: 0.5rem; margin: 0.75rem; display: inline; border-radius: 5px; font-family: avenir, arial, tahoma;";
     button.title = "Close";
@@ -285,13 +285,15 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
     var p = document.createElement("p");
     p.className = "in-browser-linter-palette";
     p.innerHTML =
-      error.selector +
+      encodeHTML(error.selector) +
       ":<br/>" +
-      error.property +
+      encodeHTML(error.property) +
       ":<br/>&nbsp;&nbsp;WANT: " +
-      error.expectedValues.join("<br/>&nbsp;&nbsp;&nbsp;&nbsp;or: ") +
+      encodeHTML(
+        error.expectedValues.join("<br/>&nbsp;&nbsp;&nbsp;&nbsp;or: ")
+      ) +
       "<br/>&nbsp;&nbsp;HAVE: " +
-      error.actualValue;
+      encodeHTML(error.actualValue);
 
     var button = document.createElement("button");
     button.className = "in-browser-linter-palette";
@@ -500,10 +502,12 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
         var identifierWithParentPrepended = parentIdentifier + ">" + identifier;
         isUnique = isIdentifierUnique(identifierWithParentPrepended);
       }
+      parentIdentifier = encodeHTML(parentIdentifier);
+      identifier = encodeHTML(identifier);
       if (isUnique) {
         pointerPreview.style.cssText =
           "margin: 0.75rem; background: #41f4ca; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ";
-        pointerPreview.innerHTML = `<span style="font-size: 0.95rem;">Your pointer is hovering over: </span><i class='in-browser-linter-palette' style="color:#36d1af"><span style="font-size:0.9rem">Hit Ctrl+i (or Cmd+i) to copy to clipboard:</span></i><div style="padding-left:0.5rem">${
+        pointerPreview.innerHTML = `<span style="font-size: 0.95rem;">Your pointer is hovering over: </span><i class='in-browser-linter-palette' style="color:#36d1af"><span style="font-size:0.9rem">Hit Ctrl+i (or control+i) to copy to clipboard:</span></i><div style="padding-left:0.5rem">${
           parentIdentifier ? parentIdentifier + ">" : ""
         }<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
         pointerPreview.title =
@@ -572,7 +576,7 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
     if (pointerPreview && pointerPreview.title) {
       let container = document.createElement("div");
       container.innerHTML = `{
-    selector: '${pointerPreview.title}',
+    selector: '${encodeHTML(pointerPreview.title)}',
     property: '',
     expectedValues: [''],
     /* contains: true, */
@@ -792,5 +796,12 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
     } else {
       return text;
     }
+  }
+
+  function encodeHTML(html) {
+    // examle: '<script>alert("hi");</script>' -> "&lt;script&gt;alert(\"hi\");&lt;/script&gt;"
+    return document
+      .createElement("div")
+      .appendChild(document.createTextNode(html)).parentNode.innerHTML;
   }
 })();
