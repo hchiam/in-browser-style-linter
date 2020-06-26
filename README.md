@@ -1,6 +1,6 @@
 # [in-browser-style-linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
 
-![version](https://img.shields.io/github/release/hchiam/in-browser-style-linter) [![HitCount](http://hits.dwyl.com/hchiam/in-browser-style-linter.svg)](http://hits.dwyl.com/hchiam/in-browser-style-linter) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![version](https://img.shields.io/github/release/hchiam/in-browser-style-linter) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![HitCount](http://hits.dwyl.com/hchiam/in-browser-style-linter.svg)](http://hits.dwyl.com/hchiam/in-browser-style-linter)
 
 Do quick style checks on your page _after_ it renders, _without leaving your browser_, and with minimal friction to setup (important for adoption):
 
@@ -8,7 +8,7 @@ Do quick style checks on your page _after_ it renders, _without leaving your bro
 2. Run in-browser. [(Chrome/Firefox/IE)](https://github.com/hchiam/in-browser-style-linter#step-2-set-up-your-browser-to-run-the-js-code)
 3. See red buttons.
 
-Or follow this demo: https://youtu.be/eK5jMvivitQ
+Or follow this demo: <https://youtu.be/eK5jMvivitQ>
 
 Side step the worry of whether your style will be overridden, or whether you're accurately testing/simulating the computed styles; make use of the fact that the browser already renders the styles that the user sees.
 
@@ -27,7 +27,7 @@ var settings = [
 ];
 ```
 
-to something like this (try it on https://www.google.com):
+to something like this (try it on <https://www.google.com>):
 
 ```js
 // Enter your desired settings here:
@@ -65,7 +65,7 @@ var settings = [
 
 ![image](https://github.com/hchiam/in-browser-style-linter/blob/master/example-screenshot.png)
 
-Hovering over the error button shows the expected and actual values. See this demo: https://youtu.be/eK5jMvivitQ
+Hovering over the error button shows the expected and actual values. See this demo: <https://youtu.be/eK5jMvivitQ>
 
 # More info: (click to expand)
 
@@ -246,7 +246,7 @@ var elements = document.querySelectorAll(
 
 ## If you want more details:
 
-I recommend you start with reading the standalone snippet: https://github.com/hchiam/in-browser-style-linter/blob/master/linter.js
+I recommend you start with reading the standalone snippet: <https://github.com/hchiam/in-browser-style-linter/blob/master/linter.js>
 
 History alert: Pure JavaScript. No jQuery. This was originally just a snippet I'd copy and paste into Chrome DevTools.
 
