@@ -273,6 +273,6 @@ Another Chrome extension (_note:_ very experimental): [in-browser-test-automator
 
 ## Firefox add-ons:
 
-[Console Log Element](https://addons.mozilla.org/en-US/firefox/addon/console-log-element)
+[Console Log Element](https://addons.mozilla.org/en-CA/firefox/addon/console-log-element)
 
 [Check All Scripts with URLVoid](https://github.com/hchiam/urlvoid-firefox-extension)
