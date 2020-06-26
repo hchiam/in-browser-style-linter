@@ -58,7 +58,7 @@ var settings = [
 
 - Chrome extension: [In-Browser Style Linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
 - Chrome: [snippets](https://developers.google.com/web/tools/chrome-devtools/snippets)
-- Firefox add-on (_COMING SOON_): [In-Browser Style Linter](https://addons.mozilla.org/en-US/firefox/addon/in-browser-style-linter)
+- Firefox add-on: [In-Browser Style Linter](https://addons.mozilla.org/en-US/firefox/addon/in-browser-style-linter)
 - Firefox: [console in Multi-line mode](https://developer.mozilla.org/en-US/docs/Tools/Web_Console/The_command_line_interpreter#Multi-line_mode)
 - Internet Explorer: F12 > Console > paste the whole code into the terminal (paste after the ">" symbol on the bottom) > Ctrl+Enter (or hit run)
 
