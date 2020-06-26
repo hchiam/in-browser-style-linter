@@ -5,16 +5,18 @@
     <link rel="stylesheet" type="text/css" href="popup.css" />
   </head>
   <body>
-    <button id="clear-error-buttons" title="Remove any '!' buttons">
-      Clear error buttons
-    </button>
-    <p id="show-instruction" style="visibility: hidden;">
-      <i>Tip: to run, you can hit Ctrl+Enter (or Cmd+Return)</i>
-    </p>
-    <button id="use-settings" title="Run linter">Use settings</button>
+    <div class="flex-container">
+      <button id="clear-error-buttons" title="Remove any '!' buttons">
+        Clear error buttons
+      </button>
+      <p id="show-instruction" style="visibility: hidden;">
+        <i>Tip: to run, you can hit Ctrl+Enter (or Cmd+Return)</i>
+      </p>
+      <button id="use-settings" title="Run linter">Use settings</button>
+    </div>
     <textarea
       id="set-settings"
-      cols="80"
+      cols="70"
       rows="20"
       title="Enter your desired settings here"
       placeholder="// Enter your desired settings here:
@@ -43,17 +45,19 @@ var settings = [
 },
 ];"
     ></textarea>
-    <div>
-      More info:
-      <a
-        role="button"
-        href="https://github.com/hchiam/in-browser-style-linter"
-        target="_blank"
-        title="https://github.com/hchiam/in-browser-style-linter"
-        >here</a
-      >
+    <div class="flex-container">
+      <div>
+        More info:
+        <a
+          role="button"
+          href="https://github.com/hchiam/in-browser-style-linter"
+          target="_blank"
+          title="https://github.com/hchiam/in-browser-style-linter"
+          >here</a
+        >
+      </div>
+      <div id="version-number" role="button"></div>
     </div>
-    <div id="version-number" role="button"></div>
     <script src="popup.js"></script>
   </body>
 </html>
