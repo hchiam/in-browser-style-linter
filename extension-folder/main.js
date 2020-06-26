@@ -501,7 +501,7 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
       if (isUnique) {
         pointerPreview.style.cssText =
           "margin: 0.75rem; background: #41f4ca; padding: 0.5rem; width: 80%; min-height: 4rem; word-wrap: break-word; transition: 0.5s; ";
-        pointerPreview.innerHTML = `<span style="font-size: 0.95rem;">Your pointer is hovering over: </span><i class='in-browser-linter-palette' style="color:#36d1af"><span style="font-size:0.9rem">Hit Ctrl+i (or control+i) to copy to clipboard:</span></i><div style="padding-left:0.5rem">${
+        pointerPreview.innerHTML = `<span style="font-size: 0.95rem;">Your pointer is hovering over: </span><i class='in-browser-linter-palette' style="color:#36d1af"><span style="font-size:0.9rem">Hit Ctrl+i (or Cmd+i) to copy to clipboard:</span></i><div style="padding-left:0.5rem">${
           parentIdentifier ? parentIdentifier + ">" : ""
         }<strong class='in-browser-linter-palette'>${identifier}</strong></div>`;
         pointerPreview.title =
