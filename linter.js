@@ -270,7 +270,7 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
     errorContainer.className = "in-browser-linter-palette";
     errorContainer.id = "in-browser-linter-error-container";
     errorContainer.style.cssText =
-      "float: left; width: 100%; height: 100%; padding: 0.75rem; overflow-y: auto;";
+      "float: left; width: 90%; height: auto; padding: 0.75rem; overflow-y: auto;";
 
     for (var e = 0; e < errors.length; e++) {
       createErrorPointerEntry(errors[e], errorContainer);
