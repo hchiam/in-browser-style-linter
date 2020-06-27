@@ -568,24 +568,31 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
       "in-browser-linter-palette-pointer-preview"
     );
     if (pointerPreview && pointerPreview.title) {
-      let container = document.createElement("div");
-      container.innerHTML = `{
+      let tempTextContainer = document.createElement("div");
+      tempTextContainer.innerHTML = `{
     selector: '${encodeHTML(pointerPreview.title)}',
     property: '',
     expectedValues: [''],
     /* contains: true, */
     /* innerHTML: '' */
 },`;
-      container.style.position = "fixed";
-      container.style.pointerEvents = "none";
-      container.style.opacity = 0;
-      document.body.appendChild(container);
-      window.getSelection().removeAllRanges();
-      let range = document.createRange();
-      range.selectNode(container);
-      window.getSelection().addRange(range);
-      document.execCommand("copy");
-      return container.innerHTML;
+      tempTextContainer.style.position = "fixed";
+      tempTextContainer.style.pointerEvents = "none";
+      tempTextContainer.style.opacity = 0;
+      let tempButton = document.createElement("button");
+      tempButton.id = "in-browser-linter-temp-button";
+      tempButton.onclick = function () {
+        window.getSelection().removeAllRanges();
+        let range = document.createRange();
+        range.selectNode(tempTextContainer);
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+      };
+      document.body.appendChild(tempTextContainer);
+      document.body.appendChild(tempButton);
+      tempButton.click();
+      document.body.removeChild(tempButton);
+      return tempTextContainer.innerHTML;
     }
   }
 
