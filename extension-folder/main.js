@@ -568,31 +568,46 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
       "in-browser-linter-palette-pointer-preview"
     );
     if (pointerPreview && pointerPreview.title) {
-      let tempTextContainer = document.createElement("div");
-      tempTextContainer.innerHTML = `{
+      let selector = `{
+    selector: '${pointerPreview.title}',
+    property: '',
+    expectedValues: [''],
+    /* contains: true, */
+    /* innerHTML: '' */
+},`;
+      if (navigator && navigator.clipboard) {
+        navigator.clipboard.writeText(selector).then(
+          function () {},
+          function (err) {}
+        );
+      } else {
+        let tempTextContainer = document.createElement("div");
+        tempTextContainer.innerHTML = `{
     selector: '${encodeHTML(pointerPreview.title)}',
     property: '',
     expectedValues: [''],
     /* contains: true, */
     /* innerHTML: '' */
 },`;
-      tempTextContainer.style.position = "fixed";
-      tempTextContainer.style.pointerEvents = "none";
-      tempTextContainer.style.opacity = 0;
-      let tempButton = document.createElement("button");
-      tempButton.id = "in-browser-linter-temp-button";
-      tempButton.onclick = function () {
-        window.getSelection().removeAllRanges();
-        let range = document.createRange();
-        range.selectNode(tempTextContainer);
-        window.getSelection().addRange(range);
-        document.execCommand("copy");
-      };
-      document.body.appendChild(tempTextContainer);
-      document.body.appendChild(tempButton);
-      tempButton.click();
-      document.body.removeChild(tempButton);
-      return tempTextContainer.innerHTML;
+        tempTextContainer.style.position = "fixed";
+        tempTextContainer.style.pointerEvents = "none";
+        tempTextContainer.style.opacity = 0;
+        let tempButton = document.createElement("button");
+        tempButton.id = "in-browser-linter-temp-button";
+        tempButton.onclick = function () {
+          window.getSelection().removeAllRanges();
+          let range = document.createRange();
+          range.selectNode(tempTextContainer);
+          window.getSelection().addRange(range);
+          document.execCommand("copy");
+        };
+        document.body.appendChild(tempTextContainer);
+        document.body.appendChild(tempButton);
+        tempButton.click();
+        document.body.removeChild(tempTextContainer);
+        document.body.removeChild(tempButton);
+      }
+      return selector;
     }
   }
 

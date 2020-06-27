@@ -278,10 +278,3 @@ Another Chrome extension (_note:_ very experimental): [in-browser-test-automator
 [Console Log Element](https://addons.mozilla.org/en-CA/firefox/addon/console-log-element)
 
 [Check All Scripts with URLVoid](https://github.com/hchiam/urlvoid-firefox-extension)
-
-```js
-{ selector: 'a#topnavbtn_tutorials.w3-bar-item.w3-button', property: '', expectedValues: [''], /* contains: true, */ /* innerHTML: '' */ },
-
-
-
-```
