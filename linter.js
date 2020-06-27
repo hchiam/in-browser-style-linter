@@ -289,9 +289,9 @@ var alreadyAddedEventListeners; // NOTE: leave this var undefined for addEventLi
       ":<br/>" +
       encodeHTML(error.property) +
       ":<br/>&nbsp;&nbsp;WANT: " +
-      encodeHTML(
-        error.expectedValues.join("<br/>&nbsp;&nbsp;&nbsp;&nbsp;or: ")
-      ) +
+      error.expectedValues
+        .map(encodeHTML)
+        .join("<br/>&nbsp;&nbsp;&nbsp;&nbsp;or: ") +
       "<br/>&nbsp;&nbsp;HAVE: " +
       encodeHTML(error.actualValue);
 
