@@ -140,7 +140,9 @@ function validateSettings(settingsString) {
 
 function isValidCode(codeString) {
   try {
-    new Function(codeString);
+    (function () {
+      new Function(codeString);
+    })();
   } catch (error) {
     return false;
   }
