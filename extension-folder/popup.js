@@ -135,5 +135,14 @@ function validateSettings(settingsString) {
         c < line.length - 1 && character == "/" && line[c + 1] == "/";
     }
   }
+  return isValidCode(settingsString);
+}
+
+function isValidCode(codeString) {
+  try {
+    new Function(codeString);
+  } catch (error) {
+    return false;
+  }
   return true;
 }
