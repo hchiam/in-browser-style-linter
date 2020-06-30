@@ -16,7 +16,7 @@ div {
 }
 
 div.flex-container {
-  width: auto;
+  width: 650px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
