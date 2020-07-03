@@ -12,26 +12,26 @@ chrome.storage.local.get("settings", function getSettings(data) {
     : `// Enter your desired settings here:
 var settings = [
 {
-    s:'a', // selector
-    p:'color', // property
-    v:'red' // expected value
+    selector: 'a',
+    property: 'color',
+    expectedValues: ['red']
 },
 {
-    s:'a',
-    p:'font-family',
-    v:'avenir',
-    i:'About'
+    s: 'a', // selector
+    p: 'font-family', // property
+    v: ['avenir', 'arial'], // expected values
+    i: 'About' // includes
 },
 {
-    s:'a.gb_d',
-    p:'font-family',
-    v:'avenir',
-    c:true
+    s: 'a.gb_d',
+    p: 'font-family',
+    v: 'avenir',
+    c: true // contains
 },
 {
-    s:'.gLFyf.gsfi',
-    p:'color',
-    v:['#eee','rgb(88, 96, 105)','#3e3e3e'],
+    s: '.gLFyf.gsfi',
+    p: 'color',
+    v: ['#eee','rgb(88, 96, 105)','#3e3e3e'],
 },
 ];`;
 });
