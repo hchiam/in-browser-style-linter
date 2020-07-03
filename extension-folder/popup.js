@@ -75,9 +75,7 @@ clearErrorButtonsButton.addEventListener("click", function clearSettings() {
   });
 });
 
-versionNumber.innerHTML = `You're using version <a href="https://github.com/hchiam/in-browser-style-linter/releases" target="_blank" title="See release notes">${
-  chrome.runtime.getManifest().version
-}</a>`;
+versionNumber.firstChild.nodeValue = chrome.runtime.getManifest().version;
 
 function useSettings() {
   settingsTextarea.value = settingsTextarea.value.replace(/^\s+|\s+$/g, "");
