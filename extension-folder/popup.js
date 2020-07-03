@@ -36,7 +36,9 @@ var settings = [
 ];`;
 });
 
-settingsTextarea.onkeyup = function setSettings(e) {
+settingsTextarea.onkeydown = setSettings;
+settingsTextarea.onkeyup = setSettings;
+function setSettings(e) {
   let eventObject = window.event ? event : e;
   let hitCtrlOrCmd = eventObject.ctrlKey || eventObject.metaKey;
   let hitEnter = eventObject.keyCode == 13;
@@ -56,7 +58,7 @@ settingsTextarea.onkeyup = function setSettings(e) {
     { settings: settingsTextarea.value },
     function () {}
   );
-};
+}
 
 settingsButton.addEventListener("click", useSettings);
 
