@@ -1,4 +1,4 @@
-# [in-browser-style-linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
+# [<img src="extension-folder/linter.png" height="50px"> in-browser-style-linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
 
 ![version](https://img.shields.io/github/release/hchiam/in-browser-style-linter?style=flat-square) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![HitCount](http://hits.dwyl.com/hchiam/in-browser-style-linter.svg)](http://hits.dwyl.com/hchiam/in-browser-style-linter)
 
