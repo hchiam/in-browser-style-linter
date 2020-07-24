@@ -1,6 +1,6 @@
 # [in-browser-style-linter](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc)
 
-![version](https://img.shields.io/github/release/hchiam/in-browser-style-linter) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![HitCount](http://hits.dwyl.com/hchiam/in-browser-style-linter.svg)](http://hits.dwyl.com/hchiam/in-browser-style-linter)
+![version](https://img.shields.io/github/release/hchiam/in-browser-style-linter?style=flat-square) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![HitCount](http://hits.dwyl.com/hchiam/in-browser-style-linter.svg)](http://hits.dwyl.com/hchiam/in-browser-style-linter)
 
 [Chrome extension](https://chrome.google.com/webstore/detail/in-browser-style-linter/mopnkclaipjghhmneijljnljeimjahfc) / [Firefox add-on](https://addons.mozilla.org/en-CA/firefox/addon/in-browser-style-linter)
 
