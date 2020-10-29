@@ -278,3 +278,7 @@ Another Chrome extension (_note:_ very experimental): [in-browser-test-automator
 [Console Log Element](https://github.com/hchiam/console-log-element)
 
 [Check All Scripts with URLVoid](https://github.com/hchiam/urlvoid-firefox-extension)
+
+# Want to make a linter in VS Code instead?
+
+Custom VS Code linter template repo: [custom-vscode-linter](https://github.com/hchiam/custom-vscode-linter)
